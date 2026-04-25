@@ -1,0 +1,58 @@
+/* 1. MASTER RESET & STARTUP VIBE */
+:root{--c:#00E5FF;--e:#10B981;--a:#F59E0B;--r:#EF4444;--p:#A855F7;--bg:#030712;--crd:rgba(15,23,42,0.6);--txt:#F8FAFC;--mut:#94A3B8;--bd:rgba(255,255,255,0.1)}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;color:var(--txt);-webkit-tap-highlight-color:transparent;word-wrap:break-word;-webkit-user-select:none;user-select:none}
+input{user-select:auto;-webkit-user-select:auto} ::-webkit-scrollbar{display:none}
+body{background:#050505;width:100vw;height:100vh;height:100dvh;overflow:hidden;display:flex;justify-content:center;align-items:center;-webkit-font-smoothing:antialiased}
+.app-container{width:100%;height:100%;max-width:100%;position:relative;background:var(--bg);display:flex;flex-direction:column;overflow:hidden;background-image:radial-gradient(circle at 50% 0%,rgba(15,23,42,1) 0%,rgba(3,7,18,1) 70%)}
+
+/* Desktop/Projector Wrapper */
+@media (min-width:481px){.app-container{max-width:420px;height:90vh;border-radius:36px;border:6px solid #222;box-shadow:0 25px 70px rgba(0,0,0,0.8),inset 0 0 10px rgba(255,255,255,0.1)}}
+.bg-orb{position:absolute;border-radius:50%;filter:blur(100px);opacity:0.15;z-index:0;pointer-events:none} .orb-1{top:-10%;right:-10%;width:300px;height:300px;background:var(--c)} .orb-2{bottom:-10%;left:-10%;width:350px;height:350px;background:var(--e)}
+h1,h2,h3,h4{font-family:'Outfit';line-height:1.1;margin-bottom:6px;letter-spacing:-0.5px} .gt{background:linear-gradient(135deg,var(--c),var(--e));-webkit-background-clip:text;-webkit-text-fill-color:transparent} input[type="radio"],input[type="checkbox"]{display:none}
+
+/* 2. DYNAMIC CONTENT AREA */
+.hdr{padding:max(15px,env(safe-area-inset-top)) 24px 15px;background:rgba(3,7,18,0.85);border-bottom:1px solid var(--bd);display:flex;justify-content:space-between;align-items:center;backdrop-filter:blur(20px);z-index:10;flex-shrink:0} .wal{display:flex;gap:12px;font-size:0.85rem;font-weight:700;background:rgba(255,255,255,0.05);padding:8px 16px;border-radius:30px;border:1px solid var(--bd);box-shadow:inset 0 2px 10px rgba(0,0,0,0.5)}
+.view{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:20px 24px 120px;display:none;animation:fi .4s cubic-bezier(0.16,1,0.3,1);z-index:1;position:relative} @keyframes fi{from{opacity:0;transform:translateY(20px) scale(0.98)}to{opacity:1;transform:translateY(0) scale(1)}}
+
+/* 3. NAVIGATION */
+.nav{position:absolute;bottom:0;width:100%;background:rgba(15,23,42,0.95);border-top:1px solid var(--bd);display:flex;justify-content:space-around;padding:12px 0 max(15px,env(safe-area-inset-bottom));backdrop-filter:blur(25px);z-index:100;box-shadow:0 -10px 40px rgba(0,0,0,0.5)}
+.ni{display:flex;flex-direction:column;align-items:center;gap:6px;font-size:0.7rem;font-weight:600;color:var(--mut);cursor:pointer;transition:.3s} .ni i{font-size:1.5rem;transition:.3s}
+
+/* 4. COMPONENTS & CARDS */
+.crd{background:var(--crd);border:1px solid var(--bd);border-radius:24px;padding:24px;margin-bottom:20px;position:relative;box-shadow:0 15px 35px rgba(0,0,0,0.3);overflow:hidden;backdrop-filter:blur(10px)} .crd::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.3),transparent)}
+.btn{background:var(--c);color:#000;padding:16px;border-radius:16px;font-weight:800;text-align:center;display:flex;justify-content:center;align-items:center;gap:10px;width:100%;cursor:pointer;font-size:1.05rem;margin-top:20px;transition:.2s;border:none} .btn:active{transform:scale(0.96)} .b-e{background:var(--e)} .b-a{background:var(--a)} .b-p{background:var(--p);color:#fff} .b-r{background:var(--r);color:#fff} .b-o{background:rgba(255,255,255,0.05);border:1px solid var(--bd);color:var(--txt)}
+.tag{position:absolute;top:0;right:0;padding:6px 16px;font-size:0.75rem;font-weight:900;border-bottom-left-radius:14px;color:#000;letter-spacing:0.5px} p{color:var(--mut);font-size:0.95rem;line-height:1.6;margin-bottom:12px} .grd{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px}
+.tog{display:flex;justify-content:space-between;align-items:center;padding:16px 0;border-bottom:1px solid var(--bd)} .tog:last-child{border-bottom:none;padding-bottom:0}
+.sw{width:50px;height:28px;background:rgba(255,255,255,0.1);border-radius:14px;position:relative;transition:.4s} .sw::after{content:'';position:absolute;width:24px;height:24px;background:#fff;border-radius:50%;top:2px;left:2px;transition:.4s} input:checked+.sw{background:var(--c)} input:checked+.sw::after{left:24px}
+.badge{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;background:rgba(255,255,255,0.1);border-radius:20px;font-size:0.75rem;font-weight:700;color:var(--txt)}
+.chat-row{display:flex;align-items:center;gap:16px;padding:16px 0;border-bottom:1px solid var(--bd);cursor:pointer} .chat-row:last-child{border:none;padding-bottom:0} .avatar{flex-shrink:0;width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.2rem;font-weight:900;color:#000} .c-text{flex:1;min-width:0} .c-msg{margin:0;color:var(--mut);font-size:0.95rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* 5. MODALS & UI STATES */
+.mod{display:none;position:absolute;inset:0;background:rgba(3,7,18,0.85);z-index:999;flex-direction:column;justify-content:flex-end;backdrop-filter:blur(8px)}
+.bs{background:#0f172a;border-top:1px solid var(--bd);border-radius:32px 32px 0 0;padding:32px 24px max(32px,env(safe-area-inset-bottom));width:100%;animation:su .4s cubic-bezier(0.16,1,0.3,1);box-shadow:0 -20px 50px rgba(0,0,0,0.5);position:relative} .bs::before{content:'';position:absolute;top:12px;left:50%;transform:translateX(-50%);width:40px;height:4px;background:rgba(255,255,255,0.2);border-radius:2px} @keyframes su{from{transform:translateY(100%)}to{transform:translateY(0)}}
+.cls{position:absolute;top:24px;right:24px;font-size:1.4rem;color:var(--mut);background:rgba(255,255,255,0.05);width:40px;height:40px;display:flex;align-items:center;justify-content:center;border-radius:50%;border:1px solid var(--bd);cursor:pointer;z-index:10} .upi-box{background:rgba(0,0,0,0.4);border:1px solid var(--bd);border-radius:16px;padding:16px;margin:20px 0;display:flex;align-items:center;gap:16px}
+.pulse{animation:pl 2s infinite} @keyframes pl{0%{opacity:1}50%{opacity:0.4}100%{opacity:1}}
+.ldr-row{display:flex;align-items:center;gap:15px;padding:12px;background:rgba(255,255,255,0.05);border-radius:12px;margin-bottom:10px} .rnk{font-size:1.5rem;font-weight:900;color:var(--mut);width:30px;text-align:center}
+.ctrls{padding:30px;display:flex;justify-content:center;gap:32px;background:rgba(15,23,42,0.95);padding-bottom:max(30px,env(safe-area-inset-bottom));backdrop-filter:blur(10px);border-top:1px solid var(--bd);flex-shrink:0} .c-btn{width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.5rem;background:rgba(255,255,255,0.1);border:1px solid var(--bd);cursor:pointer}
+
+/* =========================================
+   6. ADVANCED CSS ENGINE (CRITICAL FIX)
+   This logic makes the app actually function.
+========================================= */
+#t1:checked~#v1,#t2:checked~#v2,#t3:checked~#v3,#t4:checked~#v4,#t5:checked~#v5,#t-fnd:checked~#v-fnd,#t-ern:checked~#v-ern{display:block}
+#t1:checked~.nav .n1,#t2:checked~.nav .n2,#t3:checked~.nav .n3,#t4:checked~.nav .n4,#t5:checked~.nav .n5,#t-fnd:checked~.nav .n5,#t-ern:checked~.nav .n1{color:var(--c);transform:translateY(-4px)}
+#t1:checked~.nav .n1 i,#t2:checked~.nav .n2 i,#t3:checked~.nav .n3 i,#t4:checked~.nav .n4 i,#t5:checked~.nav .n5 i,#t-fnd:checked~.nav .n5 i,#t-ern:checked~.nav .n1 i{filter:drop-shadow(0 0 8px var(--c))}
+
+/* Modal Toggles */
+#m-upi:checked~.m-upi,#m-upic:checked~.m-upic,#m-sub:checked~.m-sub,#m-act:checked~.m-act,#m-log:checked~.m-log,#m-reg:checked~.m-reg,#m-out:checked~.m-out,#m-idy:checked~.m-idy,#m-book:checked~.m-book,#m-swap:checked~.m-swap,#m-claim:checked~.m-claim,#m-ad:checked~.m-ad,#m-ldr:checked~.m-ldr{display:flex}
+#m-cal:checked~.m-cal{display:flex;justify-content:flex-start}
+
+/* Dynamic User Data Switching */
+#u-1:checked~#v1 .u-name::after{content:"Rishit"} #u-2:checked~#v1 .u-name::after{content:"Aarav"} #u-3:checked~#v1 .u-name::after{content:"Rishabh"} #u-4:checked~#v1 .u-name::after{content:"Riyansh"} 
+#u-1:checked~#v1 .u-av::after{content:"R"} #u-2:checked~#v1 .u-av::after{content:"A"} #u-3:checked~#v1 .u-av::after{content:"R"} #u-4:checked~#v1 .u-av::after{content:"R"}
+.l-u1,.l-u2,.l-u3,.l-u4{display:none !important} #u-1:checked~#v5 .l-u1{display:flex !important} #u-2:checked~#v5 .l-u2{display:flex !important} #u-3:checked~#v5 .l-u3{display:flex !important} #u-4:checked~#v5 .l-u4{display:flex !important}
+.q-u1,.q-u2,.q-u3,.q-u4{display:none} #u-1:checked~#v3 .q-u1,#u-2:checked~#v3 .q-u2,#u-3:checked~#v3 .q-u3,#u-4:checked~#v3 .q-u4{display:block}
+.ib-1,.ib-2,.ib-3,.ib-4{display:none} #u-1:checked~#v2 .ib-1,#u-2:checked~#v2 .ib-2,#u-3:checked~#v2 .ib-3,#u-4:checked~#v2 .ib-4{display:block}
+
+/* Proxy Switch Logic */
+#proxy:checked~#v3 .p-sw{background:var(--c)} #proxy:checked~#v3 .p-sw::after{left:24px}
