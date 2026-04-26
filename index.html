@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Skill Swap - Student Economy Active</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="dark-mode">
+
+<div class="app-container">
+    <input type="checkbox" id="ai-proxy" checked>
+
+    <input type="radio" name="tabs" id="tab-home-radio" checked>
+    <input type="radio" name="tabs" id="tab-inbox-radio">
+    <input type="radio" name="tabs" id="tab-radar-radio">
+    <input type="radio" name="tabs" id="tab-store-radio">
+    <input type="radio" name="tabs" id="tab-settings-radio">
+
+    <header class="app-header">
+        <div class="header-left">
+            <img src="image_8.png" alt="Skill Swap Logo" class="app-logo">
+            <h1 class="logo-text">SKILLSWAP</h1>
+        </div>
+        <div class="header-right">
+            <div class="currency-panel">
+                <div class="currency-stat coins">
+                    <i class="fa-solid fa-coins"></i>
+                    <span id="coin-balance">450</span>
+                </div>
+                <div class="currency-stat diamonds">
+                    <i class="fa-solid fa-gem"></i>
+                    <span id="diamond-balance">2</span>
+                </div>
+            </div>
+            <label for="tab-settings-radio" class="profile-avatar">
+                <i class="fa-solid fa-user"></i>
+            </label>
+        </div>
+    </header>
+
+    <main class="views-container">
+        
+        <section id="tab-home" class="view">
+            <div class="dashboard-section welcome-banner">
+                <div class="banner-content">
+                    <h2>Welcome to the economy!</h2>
+                    <p>Unlock new skills and monetize your knowledge.</p>
+                </div>
+                <div class="banner-graphic"></div>
+            </div>
+
+            <div class="dashboard-section doubt-solving">
+                <div class="section-header">
+                    <h3>Solve Doubts & Earn <i class="fa-solid fa-coins accent"></i></h3>
+                    <a href="#" class="view-all">View All</a>
+                </div>
+                <div class="doubt-feed scroll-x">
+                    <div class="doubt-card critical">
+                        <div class="card-header"><span class="badge red">URGENT</span> <span class="reward">+50</span></div>
+                        <h4>Need Python loop help!</h4>
+                        <p class="meta">Coding • Asked 2m ago</p>
+                    </div>
+                    <div class="doubt-card">
+                        <div class="card-header"><span class="badge blue">MATH</span> <span class="reward">+20</span></div>
+                        <h4>Quadratic formula proof?</h4>
+                        <p class="meta">Academia • Asked 15m ago</p>
+                    </div>
+                    <div class="doubt-card">
+                        <div class="card-header"><span class="badge blue">GUITAR</span> <span class="reward">+20</span></div>
+                        <h4>Strumming pattern help...</h4>
+                        <p class="meta">Arts • Asked 2h ago</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-section referrals">
+                <div class="stat-card referral-card">
+                    <div class="card-content">
+                        <h3>Invite Friends. <span class="accent">Get Diamonds.</span></h3>
+                        <p>Share your unique link and earn 1 Diamond per verified adult or school ID.</p>
+                        <div class="referral-input-group">
+                            <input type="text" class="referral-code" value="skillswap.app/refer/rishabh42" readonly>
+                            <button class="btn btn-primary btn-sm"><i class="fa-solid fa-copy"></i> Copy</button>
+                        </div>
+                    </div>
+                    <div class="card-graphic"><i class="fa-solid fa-user-plus"></i></div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="tab-radar" class="view queue-section">
+            <div class="dashboard-section queue-header">
+                <div class="section-header">
+                    <h2>Matching Queue</h2>
+                    <div class="queue-header-actions">
+                        <button class="btn btn-secondary btn-sm"><i class="fa-solid fa-filter"></i></button>
+                        <button class="btn btn-primary btn-sm"><i class="fa-solid fa-plus"></i> New Request</button>
+                    </div>
+                </div>
+                
+                <div class="radar-search-container">
+                    <h3>Find your next Swap</h3>
+                    <p style="margin-bottom:12px;">Input your parameters to narrow the search:</p>
+                    <div class="radar-inputs">
+                        <div class="search-input-wrapper">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                            <input type="text" id="skill-offer-input" placeholder="Your Skill (e.g. Java)">
+                        </div>
+                        <div class="search-input-wrapper">
+                            <i class="fa-solid fa-book-open"></i>
+                            <input type="text" id="skill-request-input" placeholder="Want to Learn (e.g. Guitar)">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-section matching-feed">
+                <div class="matching-queue-feed">
+                    <div class="match-card">
+                        <div class="match-card-content">
+                            <div class="match-avatar"><i class="fa-solid fa-code"></i></div>
+                            <div class="match-meta">
+                                <h4>Aarav Mehta</h4>
+                                <span>Teaches Java • Learns Figma</span>
+                            </div>
+                        </div>
+                        <span class="connect-status online"><i class="fa-solid fa-circle"></i> Online</span>
+                    </div>
+
+                    <div class="match-card">
+                        <div class="match-card-content">
+                            <div class="match-avatar"><i class="fa-solid fa-music"></i></div>
+                            <div class="match-meta">
+                                <h4>Priya Singh</h4>
+                                <span>Teaches Guitar • Learns Physics</span>
+                            </div>
+                        </div>
+                        <span class="connect-status online"><i class="fa-solid fa-circle"></i> Online</span>
+                    </div>
+
+                    <div class="match-card">
+                        <div class="match-card-content">
+                            <div class="match-avatar"><i class="fa-solid fa-business-time"></i></div>
+                            <div class="match-meta">
+                                <h4>Rohan Sharma</h4>
+                                <span>Teaches SEO • Learns Python</span>
+                            </div>
+                        </div>
+                        <span class="connect-status idle"><i class="fa-solid fa-circle"></i> Idle</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="tab-inbox" class="view">
+            <div class="dashboard-section search-chats">
+                <div class="search-input-wrapper">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" placeholder="Search chats...">
+                </div>
+            </div>
+            
+            <div class="dashboard-section chat-list">
+                <a href="#" class="chat-row unread">
+                    <div class="chat-avatar"><i class="fa-solid fa-user"></i></div>
+                    <div class="chat-content">
+                        <div class="chat-header"><h4>Priya S.</h4> <span class="chat-time">10:05 AM</span></div>
+                        <p>Hey, ready for our Physics session at 5?</p>
+                    </div>
+                </a>
+                
+                <a href="#" class="chat-row">
+                    <div class="chat-avatar">R</div>
+                    <div class="chat-content">
+                        <div class="chat-header"><h4>Rohan</h4> <span class="chat-time">Yesterday</span></div>
+                        <p>Thanks for the SEO help, really appreciate it!</p>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <section id="tab-store" class="view store-section">
+            <div class="dashboard-section store-header">
+                <h2>Top-up Your Account</h2>
+                <p>Inject liquidity or premium currency instantly.</p>
+            </div>
+            
+            <div class="dashboard-section top-ups">
+                <div class="top-up-section">
+                    <div class="stat-card top-up-card top-up-coins">
+                        <i class="fa-solid fa-coins"></i>
+                        <h4>+500</h4>
+                        <button class="btn btn-secondary btn-sm">Buy for ₹50</button>
+                    </div>
+                    <div class="stat-card top-up-card top-up-diamonds">
+                        <i class="fa-solid fa-gem"></i>
+                        <h4>+1</h4>
+                        <button class="btn btn-primary btn-sm">Buy for ₹10</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-section ads-system">
+                <div class="stat-card ad-card">
+                    <div class="ad-content">
+                        <span class="badge blue">ADVERTISEMENT</span>
+                        <h3>Watch a video to earn <i class="fa-solid fa-coins accent"></i>?</h3>
+                        <p>Support the ecosystem and get 10 Coins instantly.</p>
+                        <button class="btn btn-primary btn-large" style="margin-top:16px;"><i class="fa-solid fa-circle-play"></i> Watch Video</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="tab-settings" class="view settings-section">
+            <div class="dashboard-section profile-header">
+                <div class="profile-section">
+                    <div class="profile-avatar-large"><i class="fa-solid fa-user"></i></div>
+                    <h2>Rishabh42</h2>
+                    <span class="badge blue verify-badge"><i class="fa-solid fa-check-circle"></i> Student Active</span>
+                </div>
+            </div>
+
+            <div class="dashboard-section personalization-panel">
+                <div class="settings-group">
+                    <div class="setting-panel-row" id="personalization-pnl">
+                        <div class="setting-panel-label">
+                            <h4>Personalization</h4>
+                            <p>Toggle between Dark and Light mode.</p>
+                        </div>
+                        <label class="toggle-switch personalization-switcher">
+                            <input type="checkbox" id="light-mode-toggle" onchange="document.body.classList.toggle('light-mode')">
+                            <span class="toggle-control" for="light-mode-toggle"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-section proxy-panel">
+                <div class="settings-group">
+                    <div class="setting-panel-row" id="ai-proxy-panel">
+                        <div class="setting-panel-label">
+                            <h4><i class="fa-solid fa-user-ninja accent-secondary"></i> AI Proxy Stealth</h4>
+                            <p>Use avatar for calls. Identity protected.</p>
+                        </div>
+                        <label for="ai-proxy" class="toggle-switch">
+                            <input type="checkbox" id="ai-proxy-switch" checked onchange="document.getElementById('ai-proxy').checked = this.checked">
+                            <span class="toggle-control" for="ai-proxy-switch"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-section identity-panel">
+                <div class="settings-group">
+                    <button class="setting-option-btn" id="identity-pnl">
+                        <div class="option-left">
+                            <i class="fa-solid fa-id-badge"></i>
+                            <div class="setting-panel-label">
+                                <h4>Verify Identity</h4>
+                                <p>Adults & Students can submit ID for access.</p>
+                            </div>
+                        </div>
+                        <div class="option-right">
+                            <span class="badge red verify-badge"><i class="fa-solid fa-times-circle"></i> Unverified</span>
+                            <i class="fa-solid fa-chevron-right"></i>
+                        </div>
+                    </button>
+                </div>
+            </div>
+
+            <div class="dashboard-section account-actions" style="margin-top: auto;">
+                <button class="btn btn-secondary btn-large"><i class="fa-solid fa-right-from-bracket"></i> Log Out</button>
+                <p style="text-align:center; font-size:10px; margin-top:20px; color:var(--text-muted);">Skill Swap Alpha v0.9 • Build V23</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="navbar">
+        <div class="navbar-item">
+            <label for="tab-home-radio" class="nav-link">
+                <i class="fa-solid fa-house"></i>
+                <span>Home</span>
+            </label>
+        </div>
+        <div class="navbar-item">
+            <label for="tab-inbox-radio" class="nav-link">
+                <i class="fa-solid fa-comment-dots"></i>
+                <span>Inbox</span>
+            </label>
+        </div>
+        <div class="navbar-item">
+            <label for="tab-radar-radio" class="nav-link">
+                <i class="fa-solid fa-satellite-dish"></i>
+                <span>Radar</span>
+            </label>
+        </div>
+        <div class="navbar-item">
+            <label for="tab-store-radio" class="nav-link">
+                <i class="fa-solid fa-store"></i>
+                <span>Store</span>
+            </label>
+        </div>
+        <div class="navbar-item">
+            <label for="tab-settings-radio" class="nav-link">
+                <i class="fa-solid fa-gear"></i>
+                <span>Settings</span>
+            </label>
+        </div>
+    </footer>
+</div>
+
+<script>
+    // Bridge required by app wrappers (WebView/Ionic/Capacitor) to hide splash screen
+    document.addEventListener("DOMContentLoaded", function() {
+        if (window.Android && window.Android.hideSplashScreen) {
+            window.Android.hideSplashScreen();
+        } else if (navigator.splashscreen) {
+            navigator.splashscreen.hide();
+        }
+    });
+</script>
+
+</body>
+</html>

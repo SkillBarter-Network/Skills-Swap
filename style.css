@@ -1,0 +1,880 @@
+/* ==============================
+   0. MASTER RESET & THEMES
+   ============================== */
+:root {
+    /* Dark Mode Defaults (Clean Dark Blue Theme) */
+    --bg-app: #030612;
+    --bg-panel: #0d1226;
+    --bg-card: #151b36;
+    --bg-navbar: #0a0e1c;
+    
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    --text-on-accent: #000000;
+
+    --border-main: rgba(255, 255, 255, 0.08);
+    --border-focus: #34d399;
+
+    --accent-base: #34d399; /* Green from logo */
+    --accent-base-rgb: 52, 211, 153;
+    --accent-hover: #10b981;
+    --accent-secondary: #f97316; /* Orange from logo */
+
+    --coin-base: #fbbf24;
+    --diamond-base: #38bdf8;
+    
+    --status-red: #ef4444;
+    --status-blue: #38bdf8;
+
+    --transition-base: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    --safe-area-inset-top: env(safe-area-inset-top, 0px);
+    --safe-area-inset-bottom: env(safe-area-inset-bottom, 0px);
+    
+    --font-stack: 'Montserrat', sans-serif;
+}
+
+/* 1. LIGHT MODE THEME - INSTANT PERSONALIZATION ENGINE */
+/* Activated instantly by JS when personalization option selected */
+.light-mode {
+    --bg-app: #f1f5f9;
+    --bg-panel: #ffffff;
+    --bg-card: #f8fafc;
+    --bg-navbar: #ffffff;
+    
+    --text-primary: #1e293b;
+    --text-secondary: #475569;
+    --text-muted: #94a3b8;
+    --text-on-accent: #ffffff;
+
+    --border-main: rgba(0, 0, 0, 0.06);
+    --border-focus: #10b981;
+
+    --accent-base: #10b981; 
+    --accent-hover: #059669;
+
+    --safe-area-inset-top: 0px; /* Overridden if inside WebView */
+}
+
+/* Master Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent; /* No blue highlight on tap */
+}
+
+body {
+    font-family: var(--font-stack);
+    background-color: var(--bg-app);
+    color: var(--text-primary);
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh; /* Dynamic Vh for mobile browsers */
+    overflow: hidden; /* App container handles scroll */
+    -webkit-font-smoothing: antialiased;
+    touch-action: manipulation;
+}
+
+h1, h2, h3, h4 {
+    font-weight: 800;
+    letter-spacing: -0.5px;
+}
+
+p {
+    color: var(--text-secondary);
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+a {
+    text-decoration: none;
+    color: var(--accent-base);
+    transition: var(--transition-base);
+}
+
+a:hover {
+    color: var(--accent-hover);
+}
+
+.accent { color: var(--accent-base); }
+.red { color: var(--status-red); }
+.blue { color: var(--status-blue); }
+
+input[type="radio"],
+input[type="checkbox"] {
+    display: none; /* All state controls hidden */
+}
+
+/* Utility Scroll-X */
+.scroll-x {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 12px;
+    padding-bottom: 5px; /* Spacing for scrollbar space */
+}
+
+.scroll-x::-webkit-scrollbar { display: none; }
+
+/* Viewport container for WebView compatibility */
+.app-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding-top: var(--safe-area-inset-top);
+    padding-bottom: calc(65px + var(--safe-area-inset-bottom)); /* Header/Footer spacing */
+}
+
+/* ==============================
+   2. APP HEADER
+   ============================== */
+.app-header {
+    height: 60px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    background-color: var(--bg-navbar);
+    border-bottom: 1px solid var(--border-main);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 16px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.app-logo {
+    height: 36px;
+    width: 36px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 4px var(--bg-app)); /* Logo POP against background */
+}
+
+.logo-text {
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--text-primary);
+    letter-spacing: 1px;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.currency-panel {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 6px 12px;
+    border-radius: 100px;
+    border: 1px solid var(--border-main);
+}
+
+.light-mode .currency-panel {
+    background: rgba(0, 0, 0, 0.03);
+}
+
+.currency-stat {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.currency-stat.coins i { color: var(--coin-base); }
+.currency-stat.diamonds i { color: var(--diamond-base); }
+
+.profile-avatar {
+    height: 36px;
+    width: 36px;
+    background-color: var(--bg-card);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid var(--border-main);
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: var(--transition-base);
+}
+
+.profile-avatar:hover {
+    border-color: var(--accent-base);
+    color: var(--accent-base);
+}
+
+/* ==============================
+   3. NAV & VIEW SWITCHER (Logic)
+   ============================== */
+/* Views Container */
+.views-container {
+    flex: 1;
+    overflow: hidden; /* Children handle scroll */
+    position: relative;
+    margin-top: 60px; /* Spacer for fixed header */
+}
+
+.view {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    padding: 16px;
+    opacity: 0;
+    transform: translateY(10px);
+    pointer-events: none;
+    transition: var(--transition-base);
+}
+
+/* Tab Logic */
+#tab-home-radio:checked ~ .views-container #tab-home,
+#tab-inbox-radio:checked ~ .views-container #tab-inbox,
+#tab-radar-radio:checked ~ .views-container #tab-radar,
+#tab-store-radio:checked ~ .views-container #tab-store,
+#tab-settings-radio:checked ~ .views-container #tab-settings {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: all;
+    z-index: 10;
+}
+
+/* NAVIGATION FOOTER */
+.navbar {
+    height: 65px;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+    background-color: var(--bg-navbar);
+    border-top: 1px solid var(--border-main);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding-bottom: var(--safe-area-inset-bottom);
+}
+
+.navbar-item {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.nav-link {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    cursor: pointer;
+    color: var(--text-muted);
+    transition: var(--transition-base);
+    position: relative;
+}
+
+.nav-link i {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.nav-link span {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+/* Navbar active state visualization */
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: calc(var(--safe-area-inset-bottom) - 1px);
+    width: 0%;
+    height: 3px;
+    background-color: var(--accent-base);
+    border-radius: 3px;
+    transition: var(--transition-base);
+}
+
+#tab-home-radio:checked ~ .navbar [for="tab-home-radio"] .nav-link,
+#tab-inbox-radio:checked ~ .navbar [for="tab-inbox-radio"] .nav-link,
+#tab-radar-radio:checked ~ .navbar [for="tab-radar-radio"] .nav-link,
+#tab-store-radio:checked ~ .navbar [for="tab-store-radio"] .nav-link,
+#tab-settings-radio:checked ~ .navbar [for="tab-settings-radio"] .nav-link {
+    color: var(--accent-base);
+}
+
+#tab-home-radio:checked ~ .navbar [for="tab-home-radio"] .nav-link::after,
+#tab-inbox-radio:checked ~ .navbar [for="tab-inbox-radio"] .nav-link::after,
+#tab-radar-radio:checked ~ .navbar [for="tab-radar-radio"] .nav-link::after,
+#tab-store-radio:checked ~ .navbar [for="tab-store-radio"] .nav-link::after,
+#tab-settings-radio:checked ~ .navbar [for="tab-settings-radio"] .nav-link::after {
+    width: 30px;
+}
+
+/* ==============================
+   4. UI COMPONENTS (Buttons, Input, Badges)
+   ============================== */
+.btn {
+    border: none;
+    font-weight: 700;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: var(--transition-base);
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn:active { transform: scale(0.97); }
+
+.btn-primary {
+    background-color: var(--accent-base);
+    color: var(--text-on-accent);
+}
+
+.btn-primary:hover { background-color: var(--accent-hover); }
+
+.btn-secondary {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: var(--text-primary);
+}
+
+.btn-secondary:hover { background-color: rgba(255, 255, 255, 0.08); }
+
+.light-mode .btn-secondary {
+    background-color: rgba(0, 0, 0, 0.04);
+    color: var(--text-primary);
+}
+
+.btn-large {
+    width: 100%;
+    padding: 16px;
+    font-size: 15px;
+}
+
+.btn-sm {
+    padding: 8px 16px;
+    font-size: 12px;
+}
+
+/* Badge System */
+.badge {
+    padding: 4px 8px;
+    font-size: 9px;
+    font-weight: 800;
+    text-transform: uppercase;
+    border-radius: 100px;
+    border: 1px solid transparent;
+}
+
+.badge.red {
+    background: rgba(239, 68, 68, 0.1);
+    color: var(--status-red);
+    border-color: rgba(239, 68, 68, 0.1);
+}
+
+.badge.blue {
+    background: rgba(56, 189, 248, 0.1);
+    color: var(--status-blue);
+    border-color: rgba(56, 189, 248, 0.1);
+}
+
+/* Universal Input */
+.search-input-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.search-input-wrapper i {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 14px 14px 14px 44px;
+    background-color: var(--bg-navbar);
+    border: 1px solid var(--border-main);
+    border-radius: 10px;
+    color: var(--text-primary);
+    font-size: 14px;
+    transition: var(--transition-base);
+}
+
+input[type="text"]:focus {
+    outline: none;
+    border-color: var(--border-focus);
+}
+
+/* Personalization Toggles (Settings, AI Proxy) */
+.toggle-control {
+    width: 44px;
+    height: 24px;
+    background-color: var(--bg-app);
+    border-radius: 100px;
+    position: relative;
+    cursor: pointer;
+    transition: var(--transition-base);
+    border: 1px solid var(--border-main);
+}
+
+.toggle-control::after {
+    content: '';
+    position: absolute;
+    left: 2px;
+    top: 2px;
+    width: 18px;
+    height: 18px;
+    background-color: var(--text-muted);
+    border-radius: 50%;
+    transition: var(--transition-base);
+}
+
+/* Checkbox Toggle logic */
+input[type="checkbox"]:checked ~ .toggle-control {
+    background-color: var(--accent-base);
+    border-color: var(--accent-base);
+}
+
+input[type="checkbox"]:checked ~ .toggle-control::after {
+    left: 22px;
+    background-color: var(--text-on-accent);
+}
+
+/* ==============================
+   5. HOME SCREEN & CARDS
+   ============================== */
+.dashboard-section {
+    margin-bottom: 24px;
+}
+
+.view > .dashboard-section:last-child {
+    margin-bottom: 0;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.view-all {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--accent-base);
+}
+
+/* Stat Card Base */
+.stat-card {
+    background-color: var(--bg-card);
+    border-radius: 16px;
+    padding: 16px;
+    border: 1px solid var(--border-main);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Welcome Banner specific */
+.welcome-banner {
+    background-color: var(--accent-base);
+    color: var(--text-on-accent);
+    border-radius: 16px;
+    padding: 24px;
+    position: relative;
+}
+
+.welcome-banner::after {
+    content: '';
+    position: absolute;
+    right: -20px;
+    bottom: -10px;
+    width: 100px;
+    height: 100px;
+    background-image: url('image_8.png'); /* Logo embedded in graphic */
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 0.1;
+    transform: rotate(15deg);
+}
+
+.banner-content h2 {
+    color: var(--text-on-accent);
+    margin-bottom: 8px;
+}
+
+.banner-content p {
+    color: var(--text-on-accent);
+    opacity: 0.8;
+    margin-bottom: 0;
+}
+
+/* Doubt Solving Feed Cards */
+.doubt-card {
+    min-width: 200px;
+    width: 200px;
+    height: 120px;
+    background-color: var(--bg-card);
+    border-radius: 12px;
+    padding: 16px;
+    border: 1px solid var(--border-main);
+    scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.doubt-card.critical {
+    border-color: rgba(239, 68, 68, 0.3);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.reward {
+    font-size: 12px;
+    font-weight: 800;
+    color: var(--coin-base);
+}
+
+.critical .reward { color: var(--coin-base); }
+
+.meta {
+    font-size: 11px;
+    color: var(--text-muted);
+}
+
+/* Referral Card specific */
+.referral-input-group {
+    display: flex;
+    margin-top: 16px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-main);
+    border-radius: 8px;
+    padding: 4px;
+}
+
+.light-mode .referral-input-group {
+    background: rgba(0, 0, 0, 0.02);
+}
+
+input.referral-code {
+    flex: 1;
+    background: none;
+    border: none;
+    color: var(--accent-secondary);
+    font-family: monospace;
+    font-weight: 700;
+    padding: 0 8px;
+    font-size: 12px;
+}
+
+/* ==============================
+   6. RADAR & MATCHING QUEUE
+   ============================== */
+.queue-header-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 5px;
+}
+
+.radar-search-container {
+    background-color: var(--bg-navbar);
+    padding: 12px;
+    border-radius: 12px;
+    margin-bottom: 16px;
+}
+
+.radar-inputs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.view > .queue-section {
+    margin-bottom: 0;
+}
+
+.light-mode .radar-inputs input {
+    background-color: var(--bg-card);
+}
+
+.matching-queue-feed {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Match Card Structure */
+.match-card {
+    background-color: var(--bg-card);
+    border-radius: 12px;
+    padding: 16px;
+    border: 1px solid var(--border-main);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: var(--transition-base);
+}
+
+.match-card:hover {
+    border-color: var(--border-focus);
+}
+
+.match-card-content {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    flex: 1;
+}
+
+.match-avatar {
+    width: 48px;
+    height: 48px;
+    background-color: var(--bg-app);
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-muted);
+}
+
+.match-meta h4 {
+    color: var(--text-primary);
+    margin-bottom: 4px;
+}
+
+.match-meta span {
+    font-size: 12px;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.connect-status.online { color: var(--accent-base); }
+.connect-status.idle { color: var(--accent-secondary); }
+
+.light-mode .match-card:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+}
+
+/* ==============================
+   7. STORE SCREEN (Ads)
+   ============================== */
+.top-up-section {
+    display: flex;
+    gap: 12px;
+}
+
+.top-up-card {
+    flex: 1;
+    background-color: var(--bg-card);
+    border-radius: 12px;
+    padding: 16px;
+    border: 1px solid var(--border-main);
+    text-align: center;
+    cursor: pointer;
+    transition: var(--transition-base);
+}
+
+.top-up-card i {
+    font-size: 24px;
+    margin-bottom: 12px;
+}
+
+.top-up-card.top-up-coins i { color: var(--coin-base); }
+.top-up-card.top-up-diamonds i { color: var(--diamond-base); }
+
+.top-up-card h4 {
+    margin-bottom: 4px;
+}
+
+.top-up-card:hover {
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+.light-mode .top-up-card:hover {
+    border-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Ad Card */
+.ad-card {
+    background-color: rgba(var(--accent-base-rgb), 0.05);
+    border-radius: 12px;
+    padding: 16px;
+    border: 2px dashed rgba(var(--accent-base-rgb), 0.3);
+    text-align: center;
+}
+
+.light-mode .ad-card {
+    background-color: rgba(var(--accent-base-rgb), 0.02);
+}
+
+.ad-card h3 {
+    margin-bottom: 12px;
+}
+
+/* ==============================
+   8. SETTINGS SCREEN & AI Proxy
+   ============================== */
+.profile-section {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.profile-avatar-large {
+    width: 80px;
+    height: 80px;
+    background-color: var(--bg-navbar);
+    border-radius: 50%;
+    margin: 0 auto 12px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-muted);
+    font-size: 32px;
+    border: 2px solid var(--border-main);
+}
+
+.verify-badge {
+    position: relative;
+    top: -5px;
+}
+
+/* Settings Group */
+.settings-group {
+    background-color: var(--bg-card);
+    border-radius: 12px;
+    border: 1px solid var(--border-main);
+    overflow: hidden;
+}
+
+.setting-option-btn,
+.setting-panel-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    width: 100%;
+    border: none;
+    background: none;
+    cursor: pointer;
+    transition: var(--transition-base);
+    color: var(--text-primary);
+}
+
+.setting-option-btn:hover {
+    background-color: rgba(255, 255, 255, 0.03);
+}
+
+.light-mode .setting-option-btn:hover {
+    background-color: rgba(0, 0, 0, 0.01);
+}
+
+.option-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--text-primary);
+}
+
+.option-left i {
+    width: 16px;
+    text-align: center;
+}
+
+.fa-chevron-right {
+    color: var(--text-muted);
+    font-size: 12px;
+}
+
+.setting-panel-label {
+    display: flex;
+    flex-direction: column;
+}
+
+.light-mode .settings-group {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+}
+
+/* AI PROXY PANEL Visual Logic */
+#ai-proxy-panel {
+    border-color: rgba(249, 115, 22, 0.2); /* Secondary accent color */
+    background: rgba(249, 115, 22, 0.03);
+}
+
+#ai-proxy:checked ~ .settings-group #ai-proxy-panel {
+    border-color: var(--accent-secondary);
+}
+
+/* IDENTITY PANEL Visual Logic */
+#identity-panel .verify-badge {
+    position: static;
+}
+
+/* ==============================
+   9. GLOBAL PANELS (Verification, theme Switcher, etc)
+   ============================== */
+/* Personalization State Switcher Visualization */
+/* Default (Dark Mode) UI visualization in panel */
+#personalization-pnl {
+    position: relative;
+}
+
+/* Visual state indication for Light Mode */
+.light-mode .toggle-control[for="light-mode-toggle"]::after {
+    left: 22px;
+    background-color: var(--accent-base); /* Theme color POP when light on */
+}
+
+/* Basic Modal Panel Mockup */
+/* Hidden initially. Needs JS to add an 'active' class to simulate show. */
+.app-panel-mock {
+    position: fixed;
+    bottom: -100%; /* Start hidden off-screen */
+    left: 0;
+    width: 100%;
+    height: 90vh;
+    background-color: var(--bg-navbar);
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    z-index: 1000;
+    transition: transform 0.3s ease-in-out;
+    padding: 24px;
+    border-top: 1px solid var(--accent-base);
+}
+
+/* This class would be added by JS to 'open' a panel */
+.app-panel-mock.active {
+    transform: translateY(-90vh); /* Slide-up modal effect */
+}
