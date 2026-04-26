@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Skill Swap - Master V27</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="bg-mesh"><div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div></div>
+
+<div id="toast">Notification</div>
+
+<div class="app-container">
+    <header class="app-header">
+        <div class="logo-area" onclick="showToast('Skill Swap V27 Live!')">
+            <img src="image_8.png" alt="Logo" class="app-logo">
+            <h1 class="logo-text">SKILLSWAP</h1>
+            <span class="badge pro" id="pro-badge"><i class="fa-solid fa-crown"></i> PRO</span>
+        </div>
+        <div class="wallet-pill" onclick="switchTab('v-store', document.getElementById('nav-store'))">
+            <i class="fa-solid fa-coins" style="color:var(--coin-gold)"></i> <span id="coin-bal">450</span>
+            <span style="color:var(--glass-border)">|</span>
+            <i class="fa-solid fa-gem" style="color:var(--accent-primary)"></i> <span id="gem-bal">2</span>
+        </div>
+    </header>
+
+    <main class="views-wrapper">
+        <section id="v-home" class="view active">
+            <div style="margin-bottom:24px; padding-top:10px;">
+                <h2>Welcome, <span id="ui-name" style="color:var(--accent-primary)">Rishit</span></h2>
+                <p>Skill economy active. Connect and earn.</p>
+            </div>
+
+            <div class="glass-card clickable" style="border-color:var(--accent-purple); background:linear-gradient(145deg, rgba(139,92,246,0.1), rgba(15,23,42,0.4))" onclick="checkPremium('ai-tutor')">
+                <div style="display:flex; justify-content:space-between; margin-bottom:12px">
+                    <h3 style="color:var(--text-main)"><i class="fa-solid fa-brain" style="color:var(--accent-purple)"></i> AI Copilot</h3>
+                    <span class="badge" style="background:var(--accent-purple); color:#fff"><i class="fa-solid fa-crown" style="color:var(--coin-gold)"></i> PREMIUM</span>
+                </div>
+                <p style="margin-bottom:16px; color:var(--text-main)">Stuck on a doubt? Ask the AI Tutor before spending coins on the network.</p>
+                <button class="btn btn-ai"><i class="fa-solid fa-sparkles"></i> Ask AI Tutor</button>
+            </div>
+
+            <div class="glass-card">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px">
+                    <h3>Solve Doubts & Earn</h3>
+                    <span style="font-size:12px; color:var(--accent-primary); font-weight:700; cursor:pointer" onclick="showToast('Loading global problem feed...')">View All</span>
+                </div>
+                
+                <div class="search-box" style="background:rgba(255,255,255,0.05); cursor:pointer" onclick="runTransaction('Loading Global Feed...', false)">
+                    <i class="fa-solid fa-code"></i>
+                    <div style="flex:1">
+                        <h4 style="font-size:14px; color:var(--text-main)">NumPy Array Formatting</h4>
+                        <p style="font-size:11px">Python • <span style="color:var(--coin-gold); font-weight:700">+50 Coins</span></p>
+                    </div>
+                    <i class="fa-solid fa-chevron-right"></i>
+                </div>
+                <div class="search-box" style="background:rgba(255,255,255,0.05); margin-bottom:0; cursor:pointer" onclick="runTransaction('Loading Global Feed...', false)">
+                    <i class="fa-solid fa-book"></i>
+                    <div style="flex:1">
+                        <h4 style="font-size:14px; color:var(--text-main)">JJK Adaptation Theories</h4>
+                        <p style="font-size:11px">Anime • <span style="color:var(--coin-gold); font-weight:700">+20 Coins</span></p>
+                    </div>
+                    <i class="fa-solid fa-chevron-right"></i>
+                </div>
+            </div>
+        </section>
+
+        <section id="v-inbox" class="view">
+            <h2 style="margin-bottom:20px; padding-top:10px;">Direct Inbox</h2>
+            <div class="search-box"><i class="fa-solid fa-search"></i><input type="text" placeholder="Search conversations..."></div>
+            
+            <div class="glass-card" style="padding:0 20px">
+                <div class="chat-row" onclick="openCallModal()">
+                    <div class="avatar">A<div class="online-dot"></div></div>
+                    <div style="flex:1">
+                        <div style="display:flex; justify-content:space-between"><h4 id="chat-name" style="color:var(--text-main)">Aarav</h4><span style="font-size:10px; color:var(--text-muted)">12:42 PM</span></div>
+                        <p id="chat-msg" style="color:var(--accent-primary)">Typing...</p>
+                    </div>
+                </div>
+                <div class="chat-row" onclick="showToast('Rishabh is currently offline.')">
+                    <div class="avatar" style="background:linear-gradient(135deg, #64748B, #334155); color:#fff">R</div>
+                    <div style="flex:1">
+                        <div style="display:flex; justify-content:space-between"><h4 style="color:var(--text-main)">Rishabh</h4><span style="font-size:10px; color:var(--text-muted)">Yesterday</span></div>
+                        <p>Did you see the new scaling?</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="v-radar" class="view">
+            <h2 style="padding-top:10px;">Match Radar</h2>
+            <p style="margin-bottom:20px">End-to-End Encrypted Matchmaking.</p>
+            
+            <div class="glass-card">
+                <h3 style="margin-bottom:16px">Configure Search</h3>
+                <div class="search-box"><i class="fa-solid fa-graduation-cap"></i><input type="text" id="skill-teach" placeholder="I can teach (e.g. Java)"></div>
+                <div class="search-box"><i class="fa-solid fa-book-open"></i><input type="text" id="skill-learn" placeholder="I want to learn (e.g. Math)"></div>
+                
+                <div style="display:flex; gap:10px; margin-top:8px">
+                    <button class="btn btn-secondary" style="flex:1; padding:12px; font-size:13px" onclick="validateAndSearch(false)"><i class="fa-solid fa-radar"></i> Standard</button>
+                    <button class="btn btn-primary" style="flex:1; padding:12px; font-size:13px" onclick="validateAndSearch(true)"><i class="fa-solid fa-crown" style="color:var(--coin-gold)"></i> VIP Match</button>
+                </div>
+            </div>
+
+            <div class="glass-card" style="border-color:var(--accent-secondary)" id="match-card">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px">
+                    <div style="display:flex; align-items:center; gap:12px">
+                        <div class="avatar" style="background:var(--accent-secondary)">!</div>
+                        <div><h4 id="match-name" style="color:var(--text-main)">Aarav Mehta</h4><p>Match Found: 98%</p></div>
+                    </div>
+                    <span class="badge green">Online</span>
+                </div>
+                <button class="btn btn-secondary" style="color:var(--text-main)" onclick="openCallModal()"><i class="fa-solid fa-video"></i> Accept WebRTC Call</button>
+            </div>
+        </section>
+
+        <section id="v-store" class="view">
+            <h2 style="padding-top:10px;">Token Store</h2>
+            <p style="margin-bottom:20px">Manage liquidity and rewards.</p>
+            
+            <div class="glass-card clickable" style="border-color:var(--coin-gold)" onclick="runTransaction('Authorizing Payment...', true, 1000, 0)">
+                <div style="display:flex; justify-content:space-between; align-items:center">
+                    <div><h3 style="color:var(--coin-gold)">+1,000 Coins</h3><p>Instant Liquidity</p></div>
+                    <h3 style="color:var(--text-main)">₹50</h3>
+                </div>
+            </div>
+
+            <div class="glass-card clickable" style="border-color:var(--accent-primary)" onclick="runTransaction('Authorizing Payment...', true, 0, 1)">
+                <div style="display:flex; justify-content:space-between; align-items:center">
+                    <div><h3 style="color:var(--accent-primary)">+1 Diamond</h3><p>Sachet Pass Currency</p></div>
+                    <h3 style="color:var(--text-main)">₹25</h3>
+                </div>
+            </div>
+
+            <div class="glass-card clickable" onclick="runTransaction('Converting Currency...', true, -1050, 1)">
+                <div style="display:flex; justify-content:space-between; align-items:center">
+                    <div><h3 style="color:var(--text-main)">Swap to Diamond</h3><p>Costs 1,050 Coins (inc. 5% fee)</p></div>
+                    <i class="fa-solid fa-rotate accent"></i>
+                </div>
+            </div>
+            
+            <div class="glass-card clickable" onclick="showToast('Insufficient Diamonds to claim this reward.')">
+                <div style="display:flex; justify-content:space-between; align-items:center">
+                    <div><h3 style="color:var(--text-main)">Kochar Market Voucher</h3><p>Cost: 25 Diamonds</p></div>
+                    <i class="fa-solid fa-microchip accent"></i>
+                </div>
+            </div>
+        </section>
+        <section id="v-settings" class="view">
+            <h2 style="padding-top:10px;">App Settings</h2>
+            <p style="margin-bottom:20px">Manage profile and security.</p>
+
+            <div class="glass-card">
+                <div style="display:flex; align-items:center; gap:16px; margin-bottom:20px">
+                    <div class="avatar" style="width:64px; height:64px; font-size:24px" id="prof-av">R</div>
+                    <div><h3 id="prof-name" style="color:var(--text-main)">Rishit</h3><span class="badge green">Student Verified</span></div>
+                </div>
+                <button class="btn btn-secondary" onclick="switchProfile()"><i class="fa-solid fa-arrows-rotate"></i> Switch Account</button>
+            </div>
+
+            <div class="glass-card">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; cursor:pointer" onclick="checkPremium('ai-proxy')">
+                    <div><h4 style="margin-bottom:4px; color:var(--text-main)"><i class="fa-solid fa-crown" style="color:var(--coin-gold)"></i> AI Proxy Stealth</h4><p>Mask identity on calls.</p></div>
+                    <div style="width:44px; height:24px; background:rgba(255,255,255,0.1); border-radius:12px; position:relative; border:1px solid var(--glass-border)" id="proxy-track">
+                        <div style="position:absolute; width:18px; height:18px; background:#fff; border-radius:50%; top:2px; left:3px; transition:0.3s" id="proxy-knob"></div>
+                    </div>
+                </div>
+
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; cursor:pointer" onclick="document.body.classList.toggle('light-mode'); updateThemeUI();">
+                    <div><h4 style="margin-bottom:4px; color:var(--text-main)">Light Theme</h4><p>Adapt UI instantly.</p></div>
+                    <div style="width:44px; height:24px; background:rgba(255,255,255,0.1); border-radius:12px; position:relative; border:1px solid var(--glass-border)" id="theme-track">
+                        <div style="position:absolute; width:18px; height:18px; background:#fff; border-radius:50%; top:2px; left:3px; transition:0.3s" id="theme-knob"></div>
+                    </div>
+                </div>
+                
+                <div style="display:flex; justify-content:space-between; align-items:center; cursor:pointer" onclick="showToast('Identity already verified via KVM records.')">
+                    <div><h4 style="margin-bottom:4px; color:var(--text-main)">Identity Verification</h4><p>Adult / School ID check.</p></div>
+                    <i class="fa-solid fa-chevron-right" style="color:var(--text-muted)"></i>
+                </div>
+            </div>
+            
+            <button class="btn btn-secondary" style="color:var(--status-red); border-color:rgba(244,63,94,0.3)" onclick="showToast('Signing out securely...')">Log Out</button>
+        </section>
+    </main>
+
+    <nav class="navbar">
+        <div class="nav-item active" onclick="switchTab('v-home', this)"><i class="fa-solid fa-house"></i><span>Home</span></div>
+        <div class="nav-item" onclick="switchTab('v-inbox', this)"><i class="fa-solid fa-comment-dots"></i><span>Inbox</span></div>
+        <div class="nav-item" onclick="switchTab('v-radar', this)"><i class="fa-solid fa-satellite-dish"></i><span>Radar</span></div>
+        <div class="nav-item" id="nav-store" onclick="switchTab('v-store', this)"><i class="fa-solid fa-store"></i><span>Store</span></div>
+        <div class="nav-item" onclick="switchTab('v-settings', this)"><i class="fa-solid fa-gear"></i><span>Settings</span></div>
+    </nav>
+</div>
+<div class="paywall-modal" id="paywall-modal">
+    <div class="glass-card" style="border-color:var(--coin-gold); text-align:center; width:100%; max-width:350px; padding:30px 20px;">
+        <i class="fa-solid fa-crown" style="font-size:50px; color:var(--coin-gold); margin-bottom:16px; animation: popIn 0.5s forwards;"></i>
+        <h2 style="color:var(--text-main)">Premium Access</h2>
+        <p style="margin-bottom:24px; color:var(--text-main)">This is an advanced feature. Unlock it securely using a Diamond Sachet or Pro Plus.</p>
+        
+        <button class="btn btn-gold" style="margin-bottom:12px; width:100%" onclick="useSachet()">
+            <i class="fa-solid fa-gem"></i> Use Sachet (-1 Diamond)
+        </button>
+        <button class="btn btn-premium" style="margin-bottom:16px; width:100%" onclick="subscribePro()">
+            <i class="fa-solid fa-bolt"></i> Get Pro Plus (₹499/mo)
+        </button>
+        <p style="color:var(--text-muted); cursor:pointer; font-weight:700" onclick="closePaywall()">Cancel</p>
+    </div>
+</div>
+
+<div class="call-modal" id="call-screen">
+    <div style="text-align:center; margin-bottom: auto;">
+        <span class="badge" style="background:rgba(255,255,255,0.1); color:#fff; border:1px solid rgba(255,255,255,0.2); padding:6px 12px; font-size:12px"><i class="fa-solid fa-lock" style="color:var(--accent-secondary)"></i> End-to-End Encrypted</span>
+    </div>
+    
+    <div class="call-avatar" id="call-av"><i class="fa-solid fa-user" style="color:var(--text-muted)"></i></div>
+    <h2 style="text-align:center; margin-bottom:8px; color:#fff" id="call-title">Aarav Mehta</h2>
+    <p style="text-align:center; color:var(--accent-primary); margin-bottom:auto">Connecting...</p>
+
+    <div class="call-dock">
+        <button class="call-btn" onclick="showToast('Microphone Muted')"><i class="fa-solid fa-microphone-slash"></i></button>
+        <button class="call-btn danger" onclick="document.getElementById('call-screen').classList.remove('active'); showToast('Call Ended')"><i class="fa-solid fa-phone-flip"></i></button>
+        <button class="call-btn" onclick="showToast('Camera Disabled')"><i class="fa-solid fa-video"></i></button>
+    </div>
+</div>
+
+<div class="overlay" id="global-overlay">
+    <div class="spinner" id="spinner"></div>
+    <i class="fa-solid fa-circle-check success-icon" id="success-icon"></i>
+    <h3 id="overlay-text" style="color:#fff">Processing...</h3>
+    <p id="overlay-sub" style="display:none; margin-top:10px; text-align:center; max-width:80%; color:var(--text-muted)"></p>
+</div>
+
+<script>
+// STATE VARIABLES
+let coins = 450;
+let gems = 2;
+let isPro = false;
+let isProxyActive = false;
+let pendingFeature = '';
+let uIdx = 0;
+const users = [
+    {name: "Rishit", match: "Aarav", chat: "I'll trade Math prep for RTX specs!"},
+    {name: "Aarav", match: "Rishit", chat: "Here are the RX 9060 benchmarks."},
+    {name: "Rishabh", match: "Riyansh", chat: "Can we swap JJK Lore for vouchers?"},
+    {name: "Riyansh", match: "Rishabh", chat: "Sending the Kochar voucher now."}
+];
+
+// TOAST ENGINE (Makes everything feel alive)
+let toastTimeout;
+function showToast(msg) {
+    const toast = document.getElementById('toast');
+    toast.innerText = msg;
+    toast.classList.add('show');
+    clearTimeout(toastTimeout);
+    toastTimeout = setTimeout(() => { toast.classList.remove('show'); }, 3000);
+}
+
+// TAB SWITCHING
+function switchTab(tabId, element) {
+    document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+    document.getElementById(tabId).classList.add('active');
+    element.classList.add('active');
+}
+
+// TRANSACTION ENGINE (Handles fake loading & balance updates)
+function runTransaction(msg, isFinancial, coinChange = 0, gemChange = 0) {
+    const overlay = document.getElementById('global-overlay');
+    const spinner = document.getElementById('spinner');
+    const success = document.getElementById('success-icon');
+    const text = document.getElementById('overlay-text');
+    const sub = document.getElementById('overlay-sub');
+    
+    text.innerText = msg;
+    sub.style.display = 'none';
+    spinner.style.display = 'block';
+    success.style.display = 'none';
+    overlay.classList.add('active');
+
+    setTimeout(() => {
+        spinner.style.display = 'none';
+        
+        if (isFinancial) {
+            // Protect against insufficient coins for swaps
+            if (coinChange < 0 && coins < Math.abs(coinChange)) {
+                success.className = "fa-solid fa-circle-xmark success-icon";
+                success.style.color = "var(--status-red)";
+                text.innerText = "Transaction Failed";
+                sub.innerText = "Insufficient Coins for this operation.";
+                sub.style.display = 'block';
+            } else {
+                success.className = "fa-solid fa-circle-check success-icon";
+                success.style.color = "var(--accent-secondary)";
+                text.innerText = "Success!";
+                coins += coinChange;
+                gems += gemChange;
+                document.getElementById('coin-bal').innerText = coins.toLocaleString();
+                document.getElementById('gem-bal').innerText = gems.toLocaleString();
+            }
+        } else {
+            success.className = "fa-solid fa-circle-check success-icon";
+            success.style.color = "var(--accent-primary)";
+            text.innerText = "Done";
+        }
+        
+        success.style.display = 'block';
+        setTimeout(() => { overlay.classList.remove('active'); }, 1500);
+    }, 1500);
+}
+
+// PREMIUM PAYWALL LOGIC
+function checkPremium(feature) {
+    if (isPro) { executeFeature(feature); } 
+    else {
+        pendingFeature = feature;
+        document.getElementById('paywall-modal').classList.add('active');
+    }
+}
+
+function closePaywall() {
+    document.getElementById('paywall-modal').classList.remove('active');
+    pendingFeature = '';
+}
+
+function useSachet() {
+    if (gems >= 1) {
+        gems -= 1;
+        document.getElementById('gem-bal').innerText = gems.toLocaleString();
+        closePaywall();
+        runTransaction('Authorizing Sachet...', false);
+        setTimeout(() => { showToast("Diamond Sachet Active! Feature unlocked."); executeFeature(pendingFeature); }, 1600);
+    } else {
+        showToast("Not enough Diamonds. Please visit the Store.");
+    }
+}
+
+function subscribePro() {
+    closePaywall();
+    runTransaction('Authorizing UPI Mandate...', false);
+    setTimeout(() => {
+        isPro = true;
+        showToast("Welcome to Pro Plus! All Premium features unlocked.");
+        document.getElementById('pro-badge').style.display = 'flex';
+        executeFeature(pendingFeature);
+    }, 1600);
+}
+
+function executeFeature(feature) {
+    if (feature === 'ai-tutor') { runTransaction('Initializing AI Copilot...', false); } 
+    else if (feature === 'ai-proxy') {
+        isProxyActive = !isProxyActive;
+        let track = document.getElementById('proxy-track');
+        let knob = document.getElementById('proxy-knob');
+        if(isProxyActive) {
+            track.style.background = 'var(--accent-primary)'; track.style.borderColor = 'var(--accent-primary)';
+            knob.style.left = '21px'; knob.style.background = '#000';
+            showToast("AI Proxy Active. Camera feed masked.");
+        } else {
+            track.style.background = 'rgba(255,255,255,0.1)'; track.style.borderColor = 'var(--glass-border)';
+            knob.style.left = '3px'; knob.style.background = '#fff';
+            showToast("AI Proxy Disabled.");
+        }
+    } else if (feature === 'priority-match') {
+        runTransaction('Executing VIP Priority Scan...', false);
+        setTimeout(() => { showToast("VIP Match Found! Bypassing queue."); }, 2000);
+    }
+}
+
+// STRICT VALIDATION ENGINE WITH MASSIVE BLOCKLIST
+function validateAndSearch(isVip) {
+    const teach = document.getElementById('skill-teach').value.toLowerCase().trim();
+    const learn = document.getElementById('skill-learn').value.toLowerCase().trim();
+    
+    // Developer Note: This is the active blocklist. Add more words here if needed.
+    const badWords = [
+        // English Profanities
+        'fuck', 'shit', 'bitch', 'ass', 'sex', 'porn', 'crap', 'idiot', 'stupid', 'whore', 'slut', 'bastard', 'cunt', 'dick', 'pussy', 'asshole', 'damn',
+        // Hindi/Regional Profanities & Slangs
+        'bc', 'mc', 'chutiya', 'madarchod', 'bhenchod', 'randi', 'gandu', 'bhosdike', 'gaandu', 'lund', 'lawda', 'chutiye', 'harami', 'kute', 'kamina', 'saala', 'kutta', 'ullu', 'muthiya'
+    ];
+    
+    // Valid Educational/Skill categories
+    const validSkills = ['java', 'python', 'c++', 'math', 'physics', 'guitar', 'music', 'coding', 'seo', 'design', 'figma', 'art', 'dance', 'english', 'history', 'science', 'chemistry', 'biology', 'react', 'html', 'css', 'marketing', 'video'];
+    
+    if(!teach || !learn) { showToast("Please enter both fields to scan."); return; }
+    
+    // Check for bad words by splitting inputs into individual words
+    const teachWords = teach.split(/\s+/);
+    const learnWords = learn.split(/\s+/);
+    
+    if(teachWords.some(w => badWords.includes(w)) || learnWords.some(w => badWords.includes(w))) {
+        showToast("⚠️ Warning: Inappropriate language detected. Action blocked."); return;
+    }
+    
+    let teachValid = validSkills.some(v => teach.includes(v));
+    let learnValid = validSkills.some(v => learn.includes(v));
+    
+    if(!teachValid && !learnValid) {
+        showToast("Invalid Input: Please enter an academic or technical skill (e.g., 'Java', 'Math')."); return;
+    }
+
+    if(isVip) {
+        checkPremium('priority-match');
+    } else {
+        runTransaction('Scanning Standard Network...', false);
+        setTimeout(() => { showToast("Standard Match Found!"); }, 2000);
+    }
+}
+
+// PROFILE SWITCHING & UI HELPERS
+function switchProfile() {
+    runTransaction('Switching Account...', false);
+    setTimeout(() => {
+        uIdx = (uIdx + 1) % users.length;
+        const u = users[uIdx];
+        document.getElementById('ui-name').innerText = u.name;
+        document.getElementById('prof-name').innerText = u.name;
+        document.getElementById('prof-av').innerText = u.name.charAt(0);
+        document.getElementById('chat-name').innerText = u.match;
+        document.getElementById('chat-msg').innerText = u.chat;
+        document.getElementById('match-name').innerText = u.match;
+        document.getElementById('call-title').innerText = u.match;
+        showToast(`Profile switched to ${u.name}`);
+    }, 1000);
+}
+
+function updateThemeUI() {
+    let track = document.getElementById('theme-track');
+    let knob = document.getElementById('theme-knob');
+    if(document.body.classList.contains('light-mode')) {
+        track.style.background = 'var(--accent-primary)'; track.style.borderColor = 'var(--accent-primary)';
+        knob.style.left = '21px'; knob.style.background = '#000';
+    } else {
+        track.style.background = 'rgba(255,255,255,0.1)'; track.style.borderColor = 'var(--glass-border)';
+        knob.style.left = '3px'; knob.style.background = '#fff';
+    }
+}
+
+function openCallModal() { document.getElementById('call-screen').classList.add('active'); }
+
+// HIDE NATIVE APP SPLASH SCREENS
+document.addEventListener("DOMContentLoaded", function() {
+    if (window.Android && window.Android.hideSplashScreen) window.Android.hideSplashScreen();
+    else if (navigator.splashscreen) navigator.splashscreen.hide();
+});
+</script>
+</body>
+</html>
