@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Skill Swap - Master Build Final</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="dark-mode">
+
+<div class="app-container">
+    <input type="radio" name="u" id="u-1" checked><input type="radio" name="u" id="u-2"><input type="radio" name="u" id="u-3"><input type="radio" name="u" id="u-4">
+    <input type="radio" name="tabs" id="t1" checked><input type="radio" name="tabs" id="t2"><input type="radio" name="tabs" id="t3"><input type="radio" name="tabs" id="t4"><input type="radio" name="tabs" id="t5">
+    
+    <input type="checkbox" id="m-ldr"><input type="checkbox" id="m-cal"><input type="checkbox" id="m-upi"><input type="checkbox" id="m-upic"><input type="checkbox" id="m-sub"><input type="checkbox" id="m-claim"><input type="checkbox" id="m-swap"><input type="checkbox" id="m-fnd"><input type="checkbox" id="m-idy"><input type="checkbox" id="m-req"><input type="checkbox" id="m-doubts"><input type="checkbox" id="m-sch"><input type="checkbox" id="m-ad">
+
+    <header class="app-header">
+        <div class="header-left">
+            <img src="image_8.png" alt="Logo" class="app-logo">
+            <h1 class="logo-text">SKILLSWAP</h1>
+        </div>
+        <div class="header-right">
+            <div class="currency-panel">
+                <div class="currency-stat coins"><i class="fa-solid fa-coins"></i> <span id="cb">450</span></div>
+                <div class="currency-stat diamonds"><i class="fa-solid fa-gem"></i> 2</div>
+            </div>
+        </div>
+    </header>
+
+    <main class="views-container">
+        <section id="v1" class="view">
+            <div class="dashboard-section">
+                <h2 style="margin-bottom:4px">Welcome back, <span class="u-name accent"></span></h2>
+                <p>Monetize your skills in the peer economy.</p>
+            </div>
+            
+            <div class="grd">
+                <label for="m-ldr" class="stat-card clickable" style="text-align:center; cursor:pointer; border-color:var(--coin-base)">
+                    <i class="fa-solid fa-trophy" style="font-size:24px; color:var(--coin-base); margin-bottom:8px"></i>
+                    <h4 style="color:var(--text-primary)">Guru Board</h4>
+                </label>
+                <div class="stat-card clickable" style="text-align:center; border-color:var(--status-blue)">
+                    <i class="fa-solid fa-bullseye" style="font-size:24px; color:var(--status-blue); margin-bottom:8px"></i>
+                    <h4 style="color:var(--text-primary)">Goal: Class 11</h4>
+                </div>
+            </div>
+
+            <div class="dashboard-section">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px">
+                    <h3>Solve & Earn <i class="fa-solid fa-coins accent"></i></h3>
+                    <label for="m-doubts" style="font-size:12px; font-weight:700; color:var(--accent-base); cursor:pointer">View All</label>
+                </div>
+                <div class="scroll-x">
+                    <label for="m-req" class="stat-card clickable" style="min-width: 220px; flex-shrink: 0; cursor:pointer">
+                        <div style="display:flex; justify-content:space-between; margin-bottom:8px"><span class="badge red">URGENT</span> <span style="font-weight:800; color:var(--coin-base)">+50</span></div>
+                        <h4 style="margin-bottom:4px; color:var(--text-primary)">NumPy Array Format</h4>
+                        <p style="font-size:11px">Python • Asked 2m ago</p>
+                    </label>
+                    <label for="m-req" class="stat-card clickable" style="min-width: 220px; flex-shrink: 0; cursor:pointer">
+                        <div style="display:flex; justify-content:space-between; margin-bottom:8px"><span class="badge blue">ANIME</span> <span style="font-weight:800; color:var(--coin-base)">+20</span></div>
+                        <h4 style="margin-bottom:4px; color:var(--text-primary)">JJK Adaptation Lore?</h4>
+                        <p style="font-size:11px">Theories • Asked 15m ago</p>
+                    </label>
+                </div>
+            </div>
+
+            <div class="stat-card" style="border-color:var(--accent-base)">
+                <h3 style="margin-bottom:8px">Refer & Earn <i class="fa-solid fa-coins"></i></h3>
+                <p style="margin-bottom:12px">Earn 200 Coins per verified invite.</p>
+                <div style="display:flex; gap:8px">
+                    <input type="text" value="skillswap.app/r/42" readonly style="flex:1; padding:8px 12px; border-radius:10px; border:1px solid var(--border-main); background:rgba(255,255,255,0.05); color:var(--text-primary); font-family:monospace">
+                    <button class="btn btn-primary" style="width:auto; padding:8px 16px" onclick="this.innerHTML='<i class=\'fa-solid fa-check\'></i> Copied'; setTimeout(()=>this.innerHTML='Copy', 2000);">Copy</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="v2" class="view">
+            <h2 style="margin-bottom:16px">Direct Inbox</h2>
+            <div class="search-input-wrapper"><input type="text" placeholder="Search chats..."><i class="fa-solid fa-search"></i></div>
+            
+            <div class="stat-card clickable" style="padding:0 16px">
+                <label for="m-cal" style="display:flex; align-items:center; gap:16px; padding:12px 0; border-bottom:1px solid rgba(255,255,255,0.1); cursor:pointer">
+                    <div style="width:44px; height:44px; border-radius:50%; background:rgba(255,255,255,0.1); display:flex; align-items:center; justify-content:center; font-weight:800; color:var(--text-primary)">A</div>
+                    <div style="flex:1"><div style="display:flex; justify-content:space-between"><h4 style="color:var(--text-primary)">Aarav</h4><span style="font-size:11px; color:var(--text-muted)">12:42</span></div><p style="font-size:13px; color:var(--text-secondary)">I'll trade Math prep for RTX specs!</p></div>
+                </label>
+                <div style="display:flex; align-items:center; gap:16px; padding:12px 0; cursor:pointer">
+                    <div style="width:44px; height:44px; border-radius:50%; background:rgba(255,255,255,0.1); display:flex; align-items:center; justify-content:center; font-weight:800; color:var(--text-primary)">R</div>
+                    <div style="flex:1"><div style="display:flex; justify-content:space-between"><h4 style="color:var(--text-primary)">Rishabh</h4><span style="font-size:11px; color:var(--text-muted)">Yesterday</span></div><p style="font-size:13px; color:var(--text-secondary)">Did you see the new JJK scaling?</p></div>
+                </div>
+            </div>
+        </section>
+        <section id="v3" class="view">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px">
+                <h2>Match Radar</h2>
+                <label for="m-req" class="btn btn-secondary" style="width:auto; padding:8px 12px; font-size:12px"><i class="fa-solid fa-plus"></i> Request</label>
+            </div>
+            
+            <div class="stat-card">
+                <h4 style="margin-bottom:12px">Search the Network</h4>
+                <div class="search-input-wrapper"><input type="text" id="teach-in" placeholder="I can teach (e.g. Java)"><i class="fa-solid fa-graduation-cap"></i></div>
+                <div class="search-input-wrapper"><input type="text" id="learn-in" placeholder="I want to learn (e.g. Guitar)"><i class="fa-solid fa-book-open"></i></div>
+                <button class="btn btn-primary" style="margin-top:8px" onclick="triggerScan()"><i class="fa-solid fa-satellite-dish"></i> Ping Network</button>
+            </div>
+
+            <h3 style="margin:20px 0 12px">Live Queue</h3>
+            <div class="stat-card q-1" style="border-color:var(--accent-base); flex-direction:column; gap:12px">
+                <div style="display:flex; justify-content:space-between; width:100%"><div style="display:flex; gap:12px"><div style="width:44px;height:44px;border-radius:50%;background:var(--accent-base);color:#000;display:flex;align-items:center;justify-content:center;font-weight:800">A</div><div><h4 style="color:var(--text-primary)">Aarav Mehta</h4><p style="font-size:11px">Needs: PC Specs</p></div></div><span class="badge green" style="height:fit-content; animation: pulseGlow 2s infinite">Online</span></div>
+                <label for="m-cal" class="btn btn-primary"><i class="fa-solid fa-video"></i> Accept WebRTC Call</label>
+            </div>
+            <div class="stat-card q-2" style="border-color:var(--accent-base); flex-direction:column; gap:12px">
+                <div style="display:flex; justify-content:space-between; width:100%"><div style="display:flex; gap:12px"><div style="width:44px;height:44px;border-radius:50%;background:var(--accent-base);color:#000;display:flex;align-items:center;justify-content:center;font-weight:800">R</div><div><h4 style="color:var(--text-primary)">Rishit</h4><p style="font-size:11px">Needs: Math Prep</p></div></div><span class="badge green" style="height:fit-content; animation: pulseGlow 2s infinite">Online</span></div>
+                <label for="m-cal" class="btn btn-primary"><i class="fa-solid fa-video"></i> Accept WebRTC Call</label>
+            </div>
+            <div class="stat-card q-3" style="border-color:var(--accent-base); flex-direction:column; gap:12px">
+                <div style="display:flex; justify-content:space-between; width:100%"><div style="display:flex; gap:12px"><div style="width:44px;height:44px;border-radius:50%;background:var(--accent-base);color:#000;display:flex;align-items:center;justify-content:center;font-weight:800">R</div><div><h4 style="color:var(--text-primary)">Riyansh</h4><p style="font-size:11px">Needs: JJK Lore</p></div></div><span class="badge green" style="height:fit-content; animation: pulseGlow 2s infinite">Online</span></div>
+                <label for="m-cal" class="btn btn-primary"><i class="fa-solid fa-video"></i> Accept WebRTC Call</label>
+            </div>
+            <div class="stat-card q-4" style="border-color:var(--accent-base); flex-direction:column; gap:12px">
+                <div style="display:flex; justify-content:space-between; width:100%"><div style="display:flex; gap:12px"><div style="width:44px;height:44px;border-radius:50%;background:var(--accent-base);color:#000;display:flex;align-items:center;justify-content:center;font-weight:800">R</div><div><h4 style="color:var(--text-primary)">Rishabh</h4><p style="font-size:11px">Needs: HW Vouchers</p></div></div><span class="badge green" style="height:fit-content; animation: pulseGlow 2s infinite">Online</span></div>
+                <label for="m-cal" class="btn btn-primary"><i class="fa-solid fa-video"></i> Accept WebRTC Call</label>
+            </div>
+        </section>
+
+        <section id="v4" class="view">
+            <h2 style="margin-bottom:16px">Token Store</h2>
+            
+            <h3 style="margin:20px 0 12px; color:var(--coin-base)">1. Earn Free Currency</h3>
+            <label for="m-ad" class="stat-card clickable" style="display:flex; justify-content:space-between; align-items:center; border:2px dashed rgba(251,191,36,0.3); cursor:pointer">
+                <div><h3 style="color:var(--text-primary)">Watch Ad</h3><p>Support the app, earn +15 Coins.</p></div>
+                <i class="fa-solid fa-circle-play" style="font-size:30px; color:var(--coin-base)"></i>
+            </label>
+
+            <h3 style="margin:20px 0 12px; color:var(--accent-base)">2. Buy Currency</h3>
+            <div class="grd">
+                <label for="m-upi" class="stat-card clickable" style="margin:0; text-align:center; border-color:var(--diamond-base); cursor:pointer">
+                    <h3 style="color:var(--text-primary)">+1 <i class="fa-solid fa-gem" style="color:var(--diamond-base)"></i></h3><p style="margin-top:4px">₹25</p>
+                </label>
+                <label for="m-upic" class="stat-card clickable" style="margin:0; text-align:center; border-color:var(--coin-base); cursor:pointer">
+                    <h3 style="color:var(--text-primary)">+2k <i class="fa-solid fa-coins" style="color:var(--coin-base)"></i></h3><p style="margin-top:4px">₹50</p>
+                </label>
+            </div>
+
+            <h3 style="margin:20px 0 12px; color:var(--accent-secondary)">3. Network Exchange</h3>
+            <div class="stat-card">
+                <h3 style="color:var(--text-primary)">Swap to Diamonds</h3>
+                <p style="margin:8px 0 12px">Convert 1,050 Coins to 1 Diamond (includes 5% network sink fee).</p>
+                <label for="m-swap" class="btn btn-secondary">Confirm Swap</label>
+            </div>
+
+            <h3 style="margin:20px 0 12px">4. Physical Rewards</h3>
+            <div class="stat-card" style="border-color:var(--accent-base)">
+                <h3 style="color:var(--text-primary)">₹500 Kochar Market / Amazon</h3>
+                <label for="m-claim" class="btn btn-primary" style="margin-top:12px">Claim (25 Diamonds)</label>
+            </div>
+            <div class="stat-card">
+                <h3 style="color:var(--text-primary)">₹250 Steam Wallet</h3>
+                <label for="m-claim" class="btn btn-secondary" style="margin-top:12px">Claim (13 Diamonds)</label>
+            </div>
+        </section>
+        <section id="v5" class="view">
+            <h2 style="margin-bottom:16px">App Settings</h2>
+
+            <div class="stat-card" style="padding:0 16px; margin-bottom:20px">
+                <label for="u-2" class="tog l-u1"><div><h4 style="color:var(--text-primary)">Current: Rishit</h4><p>Tap to switch user</p></div><i class="fa-solid fa-arrows-rotate accent"></i></label>
+                <label for="u-3" class="tog l-u2"><div><h4 style="color:var(--text-primary)">Current: Aarav</h4><p>Tap to switch user</p></div><i class="fa-solid fa-arrows-rotate accent"></i></label>
+                <label for="u-4" class="tog l-u3"><div><h4 style="color:var(--text-primary)">Current: Rishabh</h4><p>Tap to switch user</p></div><i class="fa-solid fa-arrows-rotate accent"></i></label>
+                <label for="u-1" class="tog l-u4"><div><h4 style="color:var(--text-primary)">Current: Riyansh</h4><p>Tap to switch user</p></div><i class="fa-solid fa-arrows-rotate accent"></i></label>
+            </div>
+
+            <div class="stat-card" style="padding:0 16px; margin-bottom:20px">
+                <div class="tog">
+                    <div><h4 style="color:var(--text-primary)">Light Theme</h4><p>Instantly adapt UI.</p></div>
+                    <label><input type="checkbox" onchange="document.body.classList.toggle('light-mode')"><div class="toggle-control"></div></label>
+                </div>
+                <div class="tog" style="border:none">
+                    <div><h4 style="color:var(--text-primary)"><i class="fa-solid fa-user-ninja"></i> AI Proxy Stealth</h4><p>Hide identity on calls.</p></div>
+                    <label><input type="checkbox" checked><div class="toggle-control"></div></label>
+                </div>
+            </div>
+
+            <div class="stat-card" style="padding:0 16px">
+                <label for="m-idy" class="tog clickable" style="cursor:pointer">
+                    <div><h4 style="color:var(--text-primary)">Verify Identity</h4><p>Adult / Govt ID or School ID</p></div>
+                    <span class="badge red">Unverified</span>
+                </label>
+                <label for="m-fnd" class="tog clickable" style="border:none; cursor:pointer">
+                    <div><h4 style="color:var(--text-primary)">Founders Hub</h4><p>Meet the visionary team.</p></div>
+                    <i class="fa-solid fa-chevron-right" style="color:var(--text-muted)"></i>
+                </label>
+            </div>
+            
+            <button class="btn btn-secondary" style="margin-top:20px; color:var(--status-red); border-color:rgba(239,68,68,0.3)">Log Out</button>
+        </section>
+    </main>
+
+    <nav class="navbar">
+        <label for="t1" class="nav-link n1"><i class="fa-solid fa-house"></i><span>Home</span></label>
+        <label for="t2" class="nav-link n2"><i class="fa-solid fa-comment-dots"></i><span>Inbox</span></label>
+        <label for="t3" class="nav-link n3"><i class="fa-solid fa-satellite-dish"></i><span>Radar</span></label>
+        <label for="t4" class="nav-link n4"><i class="fa-solid fa-store"></i><span>Store</span></label>
+        <label for="t5" class="nav-link n5"><i class="fa-solid fa-gear"></i><span>Settings</span></label>
+    </nav>
+    <div class="mod-container">
+        
+        <div class="mod m-sch"><div class="bs" style="text-align:center; padding-top:60px"><label for="m-sch" class="cls"><i class="fa-solid fa-xmark"></i></label><i class="fa-solid fa-radar accent" style="font-size:50px; margin-bottom:20px; animation: spinSlow 4s linear infinite"></i><h2 style="margin-bottom:10px">Scanning Network...</h2><p id="scan-txt" style="margin-bottom:30px; font-weight:700; color:var(--text-primary)"></p><label for="m-sch" class="btn btn-secondary">Cancel Scan</label></div></div>
+
+        <div class="mod m-ad"><div class="bs" style="text-align:center; padding-top:60px"><h2 style="margin-bottom:10px">Sponsor Ad Playing</h2><p style="margin-bottom:20px">Wait for the bar to finish to earn +15 Coins.</p><div style="width:100%; height:12px; background:rgba(255,255,255,0.1); border-radius:6px; overflow:hidden; margin-bottom:30px"><div style="width:0%; height:100%; background:var(--coin-base); animation: loadBar 5s linear forwards"></div></div><label class="btn btn-primary" onclick="document.getElementById('m-ad').checked=false; document.getElementById('cb').innerText='465'; alert('Successfully earned +15 Coins!')">Claim Reward</label></div></div>
+
+        <div class="mod m-doubts"><div class="bs"><label for="m-doubts" class="cls"><i class="fa-solid fa-xmark"></i></label><h2 style="margin-bottom:16px">Global Doubt Feed</h2><p style="margin-bottom:20px">Select a doubt to solve and earn coins.</p><label for="m-req" class="stat-card clickable" style="border-color: rgba(239, 68, 68, 0.3); display:block; cursor:pointer"><div style="display:flex; justify-content:space-between; margin-bottom:8px"><span class="badge red">URGENT</span> <span style="font-weight:800; color:var(--coin-base)">+50</span></div><h4 style="color:var(--text-primary)">NumPy Array Format</h4><p style="font-size:11px">Python • Asked 2m ago</p></label><label for="m-req" class="stat-card clickable" style="display:block; cursor:pointer"><div style="display:flex; justify-content:space-between; margin-bottom:8px"><span class="badge blue">ANIME</span> <span style="font-weight:800; color:var(--coin-base)">+20</span></div><h4 style="color:var(--text-primary)">JJK Adaptation Lore?</h4><p style="font-size:11px">Theories • Asked 15m ago</p></label></div></div>
+
+        <div class="mod m-req"><div class="bs" style="text-align:center; padding-top:60px"><label for="m-req" class="cls"><i class="fa-solid fa-xmark"></i></label><i class="fa-solid fa-satellite-dish accent" style="font-size:50px; margin-bottom:20px; animation: pulseGlow 2s infinite"></i><h2 style="margin-bottom:10px">Broadcasting Data</h2><p style="margin-bottom:30px">Our matching engine is routing this to active users.</p><div style="width:100%; height:6px; background:rgba(255,255,255,0.1); border-radius:3px; overflow:hidden; margin-bottom:20px"><div style="width:60%; height:100%; background:var(--accent-base); animation: fadeInSlide 2s alternate infinite"></div></div><label for="m-req" class="btn btn-secondary">Run in Background</label></div></div>
+
+        <div class="mod m-ldr"><div class="bs"><label for="m-ldr" class="cls"><i class="fa-solid fa-xmark"></i></label><h2 style="margin-bottom:16px">Guru Board</h2><div style="display:flex; align-items:center; gap:16px; padding:12px; background:rgba(251,191,36,0.1); border:1px solid var(--coin-base); border-radius:12px; margin-bottom:10px"><h3 style="color:var(--coin-base)">1</h3><div style="width:40px;height:40px;border-radius:50%;background:var(--coin-base);color:#000;display:flex;align-items:center;justify-content:center;font-weight:800">A</div><h3 style="flex:1; color:var(--text-primary)">Aarav</h3><h3 style="color:var(--coin-base)">15.2k</h3></div><div style="display:flex; align-items:center; gap:16px; padding:12px; background:var(--bg-card); border-radius:12px"><h3 style="color:var(--text-muted)">2</h3><div style="width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,0.1);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800">R</div><h3 style="flex:1; color:var(--text-primary)">Rishit</h3><h3 style="color:var(--text-primary)">12.4k</h3></div></div></div>
+        
+        <div class="mod m-cal"><div class="bs"><div class="call-hdr"><div style="display:flex; gap:10px; align-items:center"><i class="fa-solid fa-lock accent"></i><div><h4 style="color:var(--text-primary)">P2P Encrypted</h4><p class="c-1" style="font-size:11px">Math Prep / RTX Specs</p><p class="c-2" style="font-size:11px">RTX Specs / Math Prep</p><p class="c-3" style="font-size:11px">JJK Lore / Vouchers</p><p class="c-4" style="font-size:11px">Vouchers / JJK Lore</p></div></div><span class="badge red" style="animation: pulseGlow 1.5s infinite">REC</span></div><div class="vid-m"><i class="fa-solid fa-user-ninja" style="font-size:8rem; color:var(--text-muted); opacity:0.3"></i><div style="position:absolute; bottom:20px; right:20px; width:100px; height:140px; background:var(--bg-panel); border:2px solid var(--accent-base); border-radius:12px; display:flex; justify-content:center; align-items:center"><i class="fa-solid fa-user" style="font-size:3rem; color:var(--text-muted)"></i></div></div><div class="ctrls"><button class="c-btn"><i class="fa-solid fa-microphone"></i></button><button class="c-btn"><i class="fa-solid fa-video"></i></button><label for="m-cal" class="c-btn" style="background:var(--status-red); border:none"><i class="fa-solid fa-phone-flip"></i></label></div></div></div>
+
+        <div class="mod m-upi"><div class="bs"><label for="m-upi" class="cls"><i class="fa-solid fa-xmark"></i></label><h2 style="margin-bottom:16px">Buy 1 Diamond</h2><div class="stat-card"><h4>skillswap@okhdfc</h4></div><label for="m-upi" class="btn btn-primary" onclick="alert('UPI Triggered')">Pay ₹25</label></div></div>
+        <div class="mod m-upic"><div class="bs"><label for="m-upic" class="cls"><i class="fa-solid fa-xmark"></i></label><h2 style="margin-bottom:16px">Buy 2,000 Coins</h2><div class="stat-card"><h4>skillswap@okhdfc</h4></div><label for="m-upic" class="btn btn-primary" onclick="alert('UPI Triggered')">Pay ₹50</label></div></div>
+        <div class="mod m-claim"><div class="bs"><label for="m-claim" class="cls"><i class="fa-solid fa-xmark"></i></label><h2 style="margin-bottom:16px">Claim Reward</h2><h1 style="color:var(--status-red); text-align:center; font-size:40px; margin:20px 0">-25 <i class="fa-solid fa-gem"></i></h1><p style="text-align:center; margin-bottom:20px">Insufficient balance.</p><label for="m-claim" class="btn btn-secondary">Back</label></div></div>
+        <div class="mod m-swap"><div class="bs"><label for="m-swap" class="cls"><i class="fa-solid fa-xmark"></i></label><h2 style="margin-bottom:16px">Confirm Swap</h2><h1 style="color:var(--coin-base); text-align:center; font-size:40px; margin:20px 0">-1,050 <i class="fa-solid fa-coins"></i></h1><p style="text-align:center; margin-bottom:20px">Receive +1 Diamond</p><label for="m-swap" class="btn btn-primary" onclick="alert('Exchange Successful!')">Exchange</label></div></div>
+        
+        <div class="mod m-idy"><div class="bs"><label for="m-idy" class="cls"><i class="fa-solid fa-xmark"></i></label><h2 style="margin-bottom:16px">Verify Identity</h2><p style="margin-bottom:20px">Upload Gov ID or School ID.</p><div style="border:2px dashed var(--border-main); border-radius:16px; padding:40px 20px; text-align:center; margin-bottom:20px; cursor:pointer"><i class="fa-solid fa-cloud-arrow-up accent" style="font-size:40px; margin-bottom:12px; animation: fadeInSlide 1s infinite alternate"></i><h4 style="color:var(--text-primary)">Tap to Upload</h4></div><label for="m-idy" class="btn btn-primary">Submit KYC</label></div></div>
+        <div class="mod m-fnd"><div class="bs"><label for="m-fnd" class="cls"><i class="fa-solid fa-xmark"></i></label><h2 style="margin-bottom:16px">The Founders</h2><div class="stat-card" style="text-align:center; border-color:var(--status-red)"><i class="fa-solid fa-location-dot" style="font-size:30px; color:var(--status-red); margin-bottom:10px"></i><h3 style="color:var(--text-primary)">Ludhiana HQ</h3></div><div class="grd"><div class="stat-card" style="text-align:center; margin:0"><h3>Rishit</h3><p class="accent">CEO</p></div><div class="stat-card" style="text-align:center; margin:0"><h3>Aarav</h3><p class="accent">CTO</p></div><div class="stat-card" style="text-align:center; margin:0"><h3>Rishabh</h3><p class="accent">COO</p></div><div class="stat-card" style="text-align:center; margin:0"><h3>Riyansh</h3><p class="accent">CFO</p></div></div></div></div>
+    </div>
+</div>
+
+<script>
+// Search Validation Engine
+function triggerScan() {
+    let teach = document.getElementById('teach-in').value.trim();
+    let learn = document.getElementById('learn-in').value.trim();
+    let regex = /^[a-zA-Z\s\+#\-\.]+$/; // Only allows letters, spaces, and tech symbols like C++ or C#
+
+    if(!teach || !learn) {
+        alert("Please enter both skills to search the network.");
+        return;
+    }
+    if(!regex.test(teach) || !regex.test(learn)) {
+        alert("Invalid input. Please enter valid skill names (e.g., 'Java', 'Guitar').");
+        return;
+    }
+    
+    // Update the modal with the exact validated text
+    document.getElementById('scan-txt').innerText = "Looking for users who know " + learn + " and want to learn " + teach + ".";
+    document.getElementById('m-sch').checked = true;
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    if (window.Android && window.Android.hideSplashScreen) window.Android.hideSplashScreen();
+    else if (navigator.splashscreen) navigator.splashscreen.hide();
+});
+</script>
+</body>
+</html>
