@@ -1,0 +1,149 @@
+/* ==============================================================
+   1. ELITE VARIABLES & DEEP GLASS ENGINE
+   ============================================================== */
+:root {
+    --bg-base: #080C16; 
+    --bg-surface: #121826;
+    --glass-bg: rgba(18, 24, 38, 0.75);
+    --glass-border: rgba(255, 255, 255, 0.06);
+    --glass-highlight: rgba(255, 255, 255, 0.15);
+    --glass-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
+    
+    --brand-cyan: #00D4FF;     /* Matches Logo Blue/Cyan */
+    --brand-copper: #E88B4A;   /* Matches Logo Orange/Copper */
+    --accent-purple: #9D4EDD;  /* For AI Features */
+    --status-red: #EF4444;
+    --status-green: #10B981;
+    
+    --text-primary: #F8FAFC;
+    --text-secondary: #94A3B8;
+    
+    --font-sans: 'Montserrat', system-ui, -apple-system, sans-serif;
+    --bezier-smooth: cubic-bezier(0.25, 0.8, 0.25, 1);
+    --bezier-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.light-mode {
+    --bg-base: #F1F5F9; --bg-surface: #FFFFFF;
+    --glass-bg: rgba(255, 255, 255, 0.85); --glass-border: rgba(0, 0, 0, 0.08);
+    --glass-highlight: rgba(255, 255, 255, 1); --glass-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
+    --text-primary: #0F172A; --text-secondary: #475569;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; font-family: var(--font-sans); outline: none; }
+
+body { background-color: var(--bg-base); color: var(--text-primary); overflow: hidden; width: 100vw; height: 100vh; height: 100dvh; display: flex; flex-direction: column; transition: background-color 0.4s ease; }
+body.modal-open { pointer-events: none; }
+body.modal-open .modal-layer, body.modal-open .overlay { pointer-events: all; }
+
+/* Custom Scrollbars */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.1); border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.2); }
+
+/* Ambient Background Mesh */
+.ambient-bg { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; overflow: hidden; background: var(--bg-base); }
+.glow-orb { position: absolute; border-radius: 50%; filter: blur(140px); opacity: 0.25; will-change: transform; animation: drift 30s infinite alternate ease-in-out; }
+.orb-cyan { width: 50vw; height: 50vw; background: var(--brand-cyan); top: -20%; left: -10%; }
+.orb-copper { width: 45vw; height: 45vw; background: var(--brand-copper); bottom: -10%; right: -10%; animation-delay: -7s; }
+
+@keyframes drift { 0% { transform: translate3d(0, 0, 0) scale(1); } 100% { transform: translate3d(10%, 15%, 0) scale(1.15); } }
+
+/* ==============================================================
+   2. OMNI-PLATFORM ARCHITECTURE
+   ============================================================== */
+.app-layout { display: flex; width: 100%; height: 100%; overflow: hidden; flex-direction: column; }
+.main-canvas { flex: 1; position: relative; overflow-y: auto; padding: 24px; padding-bottom: 140px; scroll-behavior: smooth; }
+
+.view-layer { display: none; animation: fadeUp 0.5s var(--bezier-smooth) forwards; opacity: 0; transform: translateY(20px); }
+.view-layer.active { display: block; }
+@keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+
+/* Intelligent Scaling */
+.grid-2-col { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
+.grid-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 16px; }
+
+@media (min-width: 1024px) {
+    .app-layout { flex-direction: row; }
+    .main-canvas { padding: 48px; padding-bottom: 48px; }
+}
+/* ==============================================================
+   3. TYPOGRAPHY & ELITE COMPONENTS
+   ============================================================== */
+h1, h2, h3, h4, h5 { color: var(--text-primary); margin-bottom: 8px; letter-spacing: -0.02em; }
+h2 { font-size: clamp(24px, 5vw, 36px); font-weight: 900; }
+h3 { font-size: clamp(18px, 3vw, 22px); font-weight: 700; }
+p { font-size: clamp(13px, 2.5vw, 15px); color: var(--text-secondary); line-height: 1.6; }
+
+/* Premium Glass Cards */
+.premium-card { background: var(--glass-bg); border: 1px solid var(--glass-border); border-top: 1px solid var(--glass-highlight); border-radius: 24px; padding: 24px; box-shadow: var(--glass-shadow); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); transition: var(--bezier-bounce) 0.4s; position: relative; overflow: hidden; margin-bottom: 24px; }
+.premium-card.interactive { cursor: pointer; }
+.premium-card.interactive:hover { transform: translateY(-4px); box-shadow: 0 24px 50px rgba(0, 0, 0, 0.8); border-color: rgba(255,255,255,0.15); }
+.premium-card.interactive:active { transform: scale(0.97); }
+
+/* Buttons */
+.btn { width: 100%; padding: 18px 24px; border: none; border-radius: 16px; font-weight: 800; font-size: 15px; cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 12px; transition: var(--bezier-bounce) 0.3s; letter-spacing: 0.5px; text-transform: uppercase; }
+.btn-cyan { background: linear-gradient(135deg, var(--brand-cyan), #0088CC); color: #000; box-shadow: 0 8px 25px rgba(0, 212, 255, 0.3); }
+.btn-copper { background: linear-gradient(135deg, var(--brand-copper), #B85D19); color: #000; box-shadow: 0 8px 25px rgba(232, 139, 74, 0.3); }
+.btn-ai { background: linear-gradient(135deg, var(--accent-purple), #5A189A); color: #fff; box-shadow: 0 8px 25px rgba(157, 78, 221, 0.3); }
+.btn-ghost { background: rgba(255,255,255,0.05); color: var(--text-primary); border: 1px solid var(--glass-border); }
+.btn:hover { filter: brightness(1.15); transform: translateY(-2px); }
+.btn:active { transform: scale(0.95); box-shadow: none; }
+
+/* Badges & Inputs */
+.pill-badge { padding: 6px 14px; border-radius: 100px; font-size: 11px; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; display: inline-flex; align-items: center; gap: 6px; }
+.badge-copper { background: rgba(232, 139, 74, 0.15); color: var(--brand-copper); border: 1px solid rgba(232, 139, 74, 0.3); }
+.badge-cyan { background: rgba(0, 212, 255, 0.15); color: var(--brand-cyan); border: 1px solid rgba(0, 212, 255, 0.3); }
+
+.input-group { display: flex; align-items: center; background: rgba(0,0,0,0.4); border: 1px solid var(--glass-border); border-radius: 16px; padding: 16px 20px; transition: var(--bezier-smooth) 0.3s; width: 100%; margin-bottom: 16px; }
+.input-group i { color: var(--text-secondary); margin-right: 16px; font-size: 18px; }
+.input-group input { flex: 1; background: transparent; border: none; color: var(--text-primary); font-size: 15px; font-weight: 600; width: 100%; }
+.input-group input::placeholder { color: rgba(255,255,255,0.3); }
+.input-group:focus-within { border-color: var(--brand-cyan); box-shadow: 0 0 0 4px rgba(0, 212, 255, 0.1); background: rgba(0,0,0,0.6); }
+
+/* Avatars & Lists */
+.avatar-ring { width: 52px; height: 52px; border-radius: 50%; background: linear-gradient(135deg, var(--brand-cyan), var(--brand-copper)); display: flex; justify-content: center; align-items: center; font-weight: 900; color: #000; font-size: 20px; position: relative; flex-shrink: 0; border: 2px solid var(--bg-surface); }
+.status-dot { position: absolute; bottom: 0; right: 0; width: 14px; height: 14px; background: var(--status-green); border-radius: 50%; border: 3px solid var(--bg-surface); }
+
+.list-row { display: flex; align-items: center; gap: 16px; padding: 16px; border-radius: 16px; cursor: pointer; transition: var(--bezier-smooth) 0.2s; border: 1px solid transparent; }
+.list-row:hover { background: rgba(255,255,255,0.03); border-color: var(--glass-border); }
+.list-row:active { transform: scale(0.98); }
+
+/* Progress */
+.xp-track { width: 100%; height: 8px; background: rgba(0,0,0,0.5); border-radius: 10px; overflow: hidden; box-shadow: inset 0 2px 4px rgba(0,0,0,0.5); }
+.xp-fill { height: 100%; border-radius: 10px; transition: width 1s var(--bezier-bounce); }
+
+/* ==============================================================
+   4. MODALS, TOASTS & Z-INDEX HIERARCHY (THE FIXES)
+   ============================================================== */
+#system-toast { position: fixed; top: 40px; left: 50%; transform: translate(-50%, -20px); background: rgba(18, 24, 38, 0.95); border: 1px solid var(--glass-border); border-bottom: 2px solid var(--brand-cyan); color: var(--text-primary); padding: 16px 32px; border-radius: 100px; font-weight: 800; font-size: 14px; z-index: 999999; opacity: 0; transition: var(--bezier-bounce) 0.4s; box-shadow: 0 20px 40px rgba(0,0,0,0.8); pointer-events: none; display: flex; align-items: center; gap: 12px; }
+#system-toast.show { transform: translate(-50%, 0); opacity: 1; }
+
+/* FIX: Absolute hidden state to prevent overlapping bugs */
+.modal-layer, .call-layer, .process-layer { position: fixed; inset: 0; z-index: 99999; display: none !important; background: rgba(4, 7, 15, 0.95); backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px); opacity: 0; transition: opacity 0.3s; }
+.modal-layer.active, .call-layer.active, .process-layer.active { display: flex !important; opacity: 1; }
+
+.modal-layer { flex-direction: column; justify-content: flex-end; }
+/* FIX: Massive top padding to protect headers from the close button */
+.modal-box { background: var(--bg-surface); border-top: 1px solid var(--glass-border); border-radius: 40px 40px 0 0; padding: 48px 24px calc(40px + env(safe-area-inset-bottom)); width: 100%; position: relative; animation: slideUp 0.4s var(--bezier-smooth) forwards; max-height: 90vh; overflow-y: auto; box-shadow: 0 -20px 80px rgba(0,0,0,0.8); }
+.close-btn { position: absolute; top: 24px; right: 24px; width: 44px; height: 44px; background: rgba(255,255,255,0.05); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; color: var(--text-secondary); transition: var(--bezier-bounce) 0.3s; border: 1px solid var(--glass-border); font-size: 18px; z-index: 10; }
+.close-btn:hover { background: var(--status-red); color: #fff; transform: rotate(90deg); border-color: transparent; }
+
+@media (min-width: 1024px) { 
+    .modal-layer { justify-content: center; align-items: center; padding: 24px; } 
+    .modal-box { border-radius: 32px; max-width: 560px; border: 1px solid var(--glass-border); } 
+}
+
+/* Call Screen */
+.call-layer { flex-direction: column; justify-content: space-between; padding: max(40px, env(safe-area-inset-top)) 24px max(50px, env(safe-area-inset-bottom)); }
+.call-ring { width: 160px; height: 160px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.1); margin: auto; display: flex; justify-content: center; align-items: center; font-size: 64px; background: rgba(255,255,255,0.02); animation: pulseGlow 2s infinite; }
+.action-dock { display: flex; justify-content: center; gap: 24px; background: rgba(255,255,255,0.05); padding: 24px; border-radius: 100px; border: 1px solid var(--glass-border); margin-top: auto; }
+.fab { width: 64px; height: 64px; border-radius: 50%; border: none; background: rgba(255,255,255,0.1); color: #fff; font-size: 24px; display: flex; justify-content: center; align-items: center; cursor: pointer; transition: var(--bezier-bounce) 0.3s; }
+.fab-danger { background: var(--status-red); box-shadow: 0 0 30px rgba(239, 68, 68, 0.4); } .fab:active { transform: scale(0.8); }
+
+/* Processing */
+.process-layer { justify-content: center; align-items: center; }
+.loader-ring { width: 80px; height: 80px; border: 4px solid rgba(255,255,255,0.05); border-top-color: var(--brand-cyan); border-radius: 50%; animation: spin 1s linear infinite; margin-bottom: 32px; }
+.check-mark { font-size: 80px; color: var(--brand-copper); margin-bottom: 32px; display: none; animation: popIn 0.5s var(--bezier-bounce); }
+@keyframes spin { to { transform: rotate(360deg); } }
