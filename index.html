@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Skill Swap - Bento V34</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .top-bar { display: flex; justify-content: space-between; align-items: center; padding: max(16px, env(safe-area-inset-top)) 24px 12px; z-index: 50; }
+        .logo-box { width: 40px; height: 40px; border-radius: 12px; border: 2px solid var(--brand-cyan); object-fit: cover; }
+        .wallet { display: flex; align-items: center; gap: 12px; background: var(--bg-surface); padding: 8px 14px; border-radius: 12px; border: 1px solid var(--glass-border); font-weight: 800; font-size: 13px; cursor: pointer; }
+        @media (min-width: 1024px) { .top-bar { padding: 40px 48px 0; max-width: 1200px; margin: 0 auto; } }
+    </style>
+</head>
+<body>
+
+<div class="ambient-bg"></div>
+<div id="system-toast"><i class="fa-solid fa-circle-info"></i> <span id="toast-msg">Active</span></div>
+
+<div class="app-layout">
+    <div style="width:100%; display:flex; flex-direction:column; overflow:hidden">
+        
+        <header class="top-bar">
+            <div style="display:flex; align-items:center; gap:12px">
+                <img src="image_8.png" alt="Logo" class="logo-box">
+                <div>
+                    <h1 style="font-size:18px; margin:0">SKILLSWAP</h1>
+                    <div class="pill pill-copper" id="pro-badge" style="font-size:8px; padding:2px 6px; display:none"><i class="fa-solid fa-crown"></i> PRO</div>
+                </div>
+            </div>
+            <div class="wallet" onclick="switchView('v-store', document.getElementById('nav-store'))">
+                <span style="color:var(--text-primary)"><i class="fa-solid fa-coins" style="color:var(--coin-gold)"></i> <span id="coin-disp">450</span></span>
+                <span style="color:var(--glass-border)">|</span>
+                <span style="color:var(--text-primary)"><i class="fa-solid fa-gem" style="color:var(--brand-cyan)"></i> <span id="gem-disp">2</span></span>
+            </div>
+        </header>
+
+        <main class="main-canvas">
+            <section id="v-home" class="view-layer active">
+                <div style="margin-bottom:24px;">
+                    <p style="color:var(--brand-cyan); font-weight:700; margin-bottom:4px; font-size:12px; text-transform:uppercase">Student Economy Active</p>
+                    <h2 style="font-size:28px">Welcome, <span id="ui-fname">Rishit</span></h2>
+                </div>
+
+                <div class="bento-grid">
+                    <div class="bento-card bento-full interactive" style="background:linear-gradient(145deg, rgba(168, 85, 247, 0.05), var(--bg-surface)); border-color:rgba(168, 85, 247, 0.3)" onclick="gateCheck('ai-tutor')">
+                        <div class="flex-row" style="margin-bottom:16px">
+                            <div class="card-icon-wrap" style="background:rgba(168, 85, 247, 0.1); color:var(--accent-purple)"><i class="fa-solid fa-brain"></i></div>
+                            <span class="pill" style="background:var(--accent-purple); color:#fff; border:none"><i class="fa-solid fa-crown"></i> PRO</span>
+                        </div>
+                        <h3>AI Copilot Tutor</h3>
+                        <p style="margin-bottom:16px">Resolve complex doubts instantly using our trained academic model before spending coins.</p>
+                        <button class="btn btn-glass" style="border-color:var(--accent-purple); color:var(--accent-purple)">Initialize Engine</button>
+                    </div>
+
+                    <div class="bento-card interactive" style="border-color:rgba(245, 158, 11, 0.2)" onclick="claimQuest()">
+                        <div class="card-icon-wrap" style="background:rgba(245, 158, 11, 0.1); color:var(--coin-gold)"><i class="fa-solid fa-bolt"></i></div>
+                        <h3 style="font-size:15px">Daily Quest</h3>
+                        <p style="font-size:11px; margin-bottom:8px">Scan Radar <span id="quest-prog" style="color:var(--coin-gold); font-weight:800; float:right">0/1</span></p>
+                        <div style="width:100%; height:6px; background:rgba(255,255,255,0.1); border-radius:4px; overflow:hidden">
+                            <div id="quest-bar" style="width:0%; height:100%; background:var(--coin-gold)"></div>
+                        </div>
+                    </div>
+
+                    <div class="bento-card interactive" onclick="triggerModal('mod-leaderboard')">
+                        <div class="card-icon-wrap" style="background:rgba(0, 229, 255, 0.1); color:var(--brand-cyan)"><i class="fa-solid fa-trophy"></i></div>
+                        <h3 style="font-size:15px">Guru Board</h3>
+                        <p style="font-size:11px">View top earners.</p>
+                    </div>
+                </div>
+
+                <div class="flex-row" style="margin-bottom:12px">
+                    <h3>Live Network Doubts</h3>
+                    <span style="font-size:12px; color:var(--brand-cyan); font-weight:700; cursor:pointer" onclick="triggerModal('mod-doubts')">VIEW ALL</span>
+                </div>
+                <div class="bento-row">
+                    <div class="bento-card interactive" style="min-width:240px; padding:16px" onclick="triggerModal('mod-doubts')">
+                        <div class="pill pill-red" style="margin-bottom:8px; display:inline-block">URGENT</div>
+                        <h4 style="font-size:14px; margin-bottom:4px">NumPy Arrays Logic</h4>
+                        <p style="font-size:11px">Python • <span style="color:var(--coin-gold); font-weight:800">+50 Coins</span></p>
+                    </div>
+                    <div class="bento-card interactive" style="min-width:240px; padding:16px" onclick="triggerModal('mod-doubts')">
+                        <div class="pill pill-cyan" style="margin-bottom:8px; display:inline-block">ANIME</div>
+                        <h4 style="font-size:14px; margin-bottom:4px">JJK Domain Expansion</h4>
+                        <p style="font-size:11px">Theories • <span style="color:var(--coin-gold); font-weight:800">+20 Coins</span></p>
+                    </div>
+                </div>
+            </section>
+            <section id="v-inbox" class="view-layer">
+                <h2 style="margin-bottom:20px;">Direct Inbox</h2>
+                <div class="input-wrap"><i class="fa-solid fa-search"></i><input type="text" placeholder="Search peers..."></div>
+                
+                <div class="bento-card" style="padding:8px 20px">
+                    <div class="list-item" onclick="triggerCall()">
+                        <div class="avatar-sm">A<div class="dot"></div></div>
+                        <div style="flex:1"><div class="flex-row"><h4 id="chat-name" style="font-size:15px">Aarav Garg</h4><span style="font-size:11px; color:var(--text-secondary)">12:42</span></div><p id="chat-msg" style="color:var(--brand-cyan); font-weight:600; font-size:12px">Typing...</p></div>
+                    </div>
+                    <div class="list-item" onclick="dispatchToast('Rishabh is offline.')">
+                        <div class="avatar-sm">R</div>
+                        <div style="flex:1"><div class="flex-row"><h4 style="font-size:15px">Rishabh Jain</h4><span style="font-size:11px; color:var(--text-secondary)">1d</span></div><p style="font-size:12px">Did you see the JJK scaling?</p></div>
+                    </div>
+                    <div class="list-item" onclick="dispatchToast('Gavya is offline.')">
+                        <div class="avatar-sm">G</div>
+                        <div style="flex:1"><div class="flex-row"><h4 style="font-size:15px">Gavya Jain</h4><span style="font-size:11px; color:var(--text-secondary)">2d</span></div><p style="font-size:12px">Backend PR looks good.</p></div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="v-radar" class="view-layer">
+                <h2 style="margin-bottom:4px;">Match Radar</h2>
+                <p style="margin-bottom:24px;">End-to-End Encrypted Matchmaking.</p>
+                
+                <div class="bento-grid">
+                    <div class="bento-card bento-full" style="border-color:rgba(0,229,255,0.2)">
+                        <div class="input-wrap"><i class="fa-solid fa-graduation-cap"></i><input type="text" id="in-teach" placeholder="I can teach (e.g. Java)"></div>
+                        <div class="input-wrap"><i class="fa-solid fa-book-open"></i><input type="text" id="in-learn" placeholder="I want to learn (e.g. Math)"></div>
+                        <div style="display:flex; gap:12px; margin-top:16px">
+                            <button class="btn btn-glass" style="flex:1" onclick="executeScan(false)">Scan</button>
+                            <button class="btn btn-copper" style="flex:1" onclick="executeScan(true)"><i class="fa-solid fa-crown"></i> VIP</button>
+                        </div>
+                    </div>
+
+                    <div class="bento-card bento-full" style="display:flex; flex-direction:column; align-items:center; text-align:center; padding:32px 20px" id="match-card">
+                        <div class="avatar-sm" style="width:64px; height:64px; font-size:24px; margin-bottom:16px; background:var(--brand-cyan); color:#000">!</div>
+                        <h4 id="match-name" style="font-size:20px; margin-bottom:4px">Aarav Garg</h4>
+                        <p style="color:var(--brand-cyan); font-weight:700; margin-bottom:20px">Confidence: 98%</p>
+                        <button class="btn btn-glass" style="border-color:var(--brand-cyan); color:var(--brand-cyan)" onclick="triggerCall()"><i class="fa-solid fa-video"></i> Accept WebRTC</button>
+                    </div>
+                </div>
+            </section>
+            <section id="v-store" class="view-layer">
+                <h2 style="margin-bottom:24px;">Token Store</h2>
+                
+                <div class="bento-grid">
+                    <div class="bento-card bento-full interactive" style="background:linear-gradient(145deg, rgba(232, 139, 74, 0.1), var(--bg-surface)); border-color:rgba(232, 139, 74, 0.3)" onclick="triggerModal('mod-ad')">
+                        <div class="flex-row">
+                            <div><h3 style="margin:0; color:var(--brand-copper)">Watch Ad</h3><p style="font-size:11px">Earn +15 Coins instantly.</p></div>
+                            <i class="fa-solid fa-circle-play" style="font-size:28px; color:var(--brand-copper)"></i>
+                        </div>
+                    </div>
+
+                    <div class="bento-card interactive" onclick="processLedger('Authorizing UPI...', true, 0, 1)">
+                        <h3 style="color:var(--brand-cyan)">+1 Diamond</h3><p style="font-size:18px; color:var(--text-primary); font-weight:800">₹25</p>
+                    </div>
+                    <div class="bento-card interactive" onclick="processLedger('Authorizing UPI...', true, 1000, 0)">
+                        <h3 style="color:var(--brand-copper)">+1k Coins</h3><p style="font-size:18px; color:var(--text-primary); font-weight:800">₹50</p>
+                    </div>
+
+                    <div class="bento-card bento-full interactive" style="border-color:var(--accent-purple)" onclick="processLedger('Authorizing AutoPay...', false); setTimeout(()=>{isPro=true; storeData(); syncUI(); dispatchToast('Pro Plus Activated!');}, 1800);">
+                        <div class="flex-row"><h3 style="margin:0">Pro Plus</h3><div class="pill" style="background:var(--accent-purple); color:#fff; border:none">₹499/mo</div></div>
+                        <p style="font-size:11px; margin-top:8px">Unlimited AI & Zero Ads.</p>
+                    </div>
+
+                    <div class="bento-card interactive bento-full" onclick="processLedger('Converting Currency...', true, -1050, 1)">
+                        <div class="flex-row"><h3 style="margin:0">Swap to Diamond</h3><i class="fa-solid fa-rotate" style="color:var(--brand-cyan)"></i></div>
+                        <p style="font-size:11px; margin-top:8px">Cost: 1,050 Coins (5% sink fee).</p>
+                    </div>
+                    
+                    <div class="bento-card interactive bento-full" onclick="processLedger('Processing Reward...', true, 0, -25)">
+                        <div class="flex-row"><h3 style="margin:0">Amazon Voucher</h3><i class="fa-solid fa-microchip" style="color:var(--brand-copper)"></i></div>
+                        <p style="font-size:11px; margin-top:8px">Cost: 25 Diamonds. Value: ₹500.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="v-settings" class="view-layer">
+                <h2 style="margin-bottom:24px;">Settings</h2>
+
+                <div class="bento-card" style="margin-bottom:24px">
+                    <div class="flex-row" style="margin-bottom:20px">
+                        <div class="avatar-sm" style="width:56px; height:56px; font-size:24px" id="prof-av">R</div>
+                        <div style="flex:1; margin-left:16px">
+                            <h3 id="prof-name" style="margin-bottom:4px">Rishit Jain</h3>
+                            <div class="pill pill-cyan" style="display:inline-block">Verified</div>
+                        </div>
+                    </div>
+                    <div style="background:rgba(0,0,0,0.3); padding:12px; border-radius:12px">
+                        <div class="flex-row" style="margin-bottom:8px; font-size:11px; font-weight:700"><span id="lvl-txt">Level 4</span><span id="xp-txt" style="color:var(--brand-cyan)">450/1000 XP</span></div>
+                        <div style="width:100%; height:4px; background:rgba(255,255,255,0.1); border-radius:2px"><div id="xp-bar" style="width:45%; height:100%; background:var(--brand-cyan); border-radius:2px"></div></div>
+                    </div>
+                    <button class="btn btn-glass" style="padding:12px; margin-top:16px" onclick="rotateProfile()">Switch Account</button>
+                </div>
+
+                <div class="bento-card" style="padding:8px 20px">
+                    <div class="list-item" onclick="gateCheck('ai-proxy')">
+                        <div style="flex:1"><h4 style="font-size:14px; margin-bottom:4px"><i class="fa-solid fa-crown" style="color:var(--coin-gold); margin-right:6px"></i> AI Proxy</h4><p style="font-size:11px">Mask identity on calls.</p></div>
+                        <div style="width:44px; height:24px; background:rgba(255,255,255,0.1); border-radius:12px; position:relative; transition:0.3s" id="tg-proxy"><div style="position:absolute; width:16px; height:16px; background:#fff; border-radius:50%; top:4px; left:4px; transition:0.3s" id="kn-proxy"></div></div>
+                    </div>
+                    <div class="list-item" onclick="document.body.classList.toggle('light-mode'); updateThemeUI();">
+                        <div style="flex:1"><h4 style="font-size:14px; margin-bottom:4px">Light Theme</h4><p style="font-size:11px">Adapt UI colors.</p></div>
+                        <div style="width:44px; height:24px; background:rgba(255,255,255,0.1); border-radius:12px; position:relative; transition:0.3s" id="tg-theme"><div style="position:absolute; width:16px; height:16px; background:#fff; border-radius:50%; top:4px; left:4px; transition:0.3s" id="kn-theme"></div></div>
+                    </div>
+                    <div class="list-item" onclick="triggerModal('mod-identity')">
+                        <div style="flex:1"><h4 style="font-size:14px; margin-bottom:4px">Identity Check</h4><p style="font-size:11px">Upload Govt ID.</p></div>
+                        <div class="pill pill-red">Unverified</div>
+                    </div>
+                    <div class="list-item" onclick="triggerModal('mod-founders')" style="border:none">
+                        <div style="flex:1"><h4 style="font-size:14px; margin-bottom:4px">Founders Hub</h4><p style="font-size:11px">Meet the team.</p></div>
+                        <i class="fa-solid fa-chevron-right" style="color:var(--text-secondary)"></i>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <nav class="floating-dock">
+        <div class="dock-item active" id="nav-home" onclick="switchView('v-home', this)"><i class="fa-solid fa-house"></i></div>
+        <div class="dock-item" id="nav-inbox" onclick="switchView('v-inbox', this)"><i class="fa-solid fa-message"></i></div>
+        <div class="dock-item" id="nav-radar" onclick="switchView('v-radar', this)"><i class="fa-solid fa-satellite-dish"></i></div>
+        <div class="dock-item" id="nav-store" onclick="switchView('v-store', this)"><i class="fa-solid fa-store"></i></div>
+        <div class="dock-item" id="nav-settings" onclick="switchView('v-settings', this)"><i class="fa-solid fa-gear"></i></div>
+    </nav>
+</div>
+<div class="modal-layer" id="mod-leaderboard">
+    <div class="modal-box">
+        <div class="close-btn" onclick="closeModal('mod-leaderboard')"><i class="fa-solid fa-xmark"></i></div>
+        <h2 style="margin-bottom:24px;">Guru Board</h2>
+        <div class="bento-card" style="display:flex; align-items:center; gap:16px; border-color:var(--coin-gold); background:rgba(245, 158, 11, 0.1); padding:16px"><h3 style="color:var(--coin-gold); margin:0">1</h3><div class="avatar-sm" style="background:var(--coin-gold); color:#000">A</div><h4 style="flex:1; font-size:16px">Aarav Garg</h4><h4 style="color:var(--coin-gold)">15.2k</h4></div>
+        <div class="bento-card" style="display:flex; align-items:center; gap:16px; padding:16px"><h3 style="color:var(--text-secondary); margin:0">2</h3><div class="avatar-sm">R</div><h4 style="flex:1; font-size:16px">Rishit Jain</h4><h4>12.4k</h4></div>
+        <div class="bento-card" style="display:flex; align-items:center; gap:16px; padding:16px"><h3 style="color:var(--text-secondary); margin:0">3</h3><div class="avatar-sm" style="background:var(--status-red); color:#fff">G</div><h4 style="flex:1; font-size:16px">Gavya Jain</h4><h4>9.8k</h4></div>
+    </div>
+</div>
+
+<div class="modal-layer" id="mod-founders">
+    <div class="modal-box">
+        <div class="close-btn" onclick="closeModal('mod-founders')"><i class="fa-solid fa-xmark"></i></div>
+        <h2 style="margin-bottom:24px;">The Founders</h2>
+        <div class="bento-card" style="text-align:center; border-color:var(--status-red); background:rgba(239,68,68,0.05); padding:24px; margin-bottom:16px">
+            <i class="fa-solid fa-location-dot" style="font-size:32px; color:var(--status-red); margin-bottom:12px"></i>
+            <h3>Ludhiana HQ</h3><p style="font-size:12px">Targeting Tier-2 corridors.</p>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; gap: 12px; justify-content: center;">
+            <div class="bento-card" style="text-align:center; padding:16px; margin:0; flex: 1 1 calc(33% - 12px); min-width:90px;"><h4 style="font-size:13px; margin-bottom:4px">Rishit</h4><p style="color:var(--brand-copper); font-size:10px; font-weight:800">Co-founder</p></div>
+            <div class="bento-card" style="text-align:center; padding:16px; margin:0; flex: 1 1 calc(33% - 12px); min-width:90px;"><h4 style="font-size:13px; margin-bottom:4px">Aarav</h4><p style="color:var(--brand-copper); font-size:10px; font-weight:800">Co-founder</p></div>
+            <div class="bento-card" style="text-align:center; padding:16px; margin:0; flex: 1 1 calc(33% - 12px); min-width:90px;"><h4 style="font-size:13px; margin-bottom:4px">Rishabh</h4><p style="color:var(--brand-copper); font-size:10px; font-weight:800">Co-founder</p></div>
+            <div class="bento-card" style="text-align:center; padding:16px; margin:0; flex: 1 1 calc(50% - 12px); min-width:120px;"><h4 style="font-size:13px; margin-bottom:4px">Riyansh</h4><p style="color:var(--brand-copper); font-size:10px; font-weight:800">Co-founder</p></div>
+            <div class="bento-card" style="text-align:center; padding:16px; margin:0; flex: 1 1 calc(50% - 12px); min-width:120px;"><h4 style="font-size:13px; margin-bottom:4px">Gavya</h4><p style="color:var(--brand-copper); font-size:10px; font-weight:800">Co-founder</p></div>
+        </div>
+    </div>
+</div>
+
+<div class="modal-layer" id="paywall-modal" style="justify-content:center; align-items:center; padding:24px;">
+    <div class="bento-card" style="border-color:var(--coin-gold); text-align:center; width:100%; max-width:400px; padding:40px 24px;">
+        <i class="fa-solid fa-crown" style="font-size:64px; color:var(--coin-gold); margin-bottom:20px;"></i>
+        <h2 style="margin-bottom:12px;">Premium Access</h2>
+        <p style="margin-bottom:32px;">Unlock this securely using a Diamond Sachet or Pro Plus.</p>
+        <button class="btn btn-gold" style="margin-bottom:12px" onclick="useSachet()"><i class="fa-solid fa-gem"></i> Use Sachet (-1 Diamond)</button>
+        <button class="btn btn-cyan" style="margin-bottom:20px" onclick="purchasePro()"><i class="fa-solid fa-bolt"></i> Get Pro Plus (₹499/mo)</button>
+        <p style="color:var(--text-secondary); cursor:pointer; font-weight:800; font-size:13px" onclick="closePaywall()">CANCEL</p>
+    </div>
+</div>
+<div class="modal-layer" id="mod-identity">
+    <div class="modal-box">
+        <div class="close-btn" onclick="closeModal('mod-identity')"><i class="fa-solid fa-xmark"></i></div>
+        <h2 style="margin-bottom:16px;">Verify Identity</h2>
+        <p style="margin-bottom:32px;">Upload Adult/Gov ID or School ID to unlock network features.</p>
+        <div style="border:2px dashed var(--glass-border); border-radius:24px; padding:40px 20px; text-align:center; margin-bottom:32px; cursor:pointer; background:rgba(0,0,0,0.2)" onclick="document.getElementById('hidden-file').click()">
+            <i class="fa-solid fa-cloud-arrow-up" style="color:var(--brand-cyan); font-size:48px; margin-bottom:16px;"></i>
+            <h3 id="upload-label">Tap to Upload</h3><p style="font-size:12px">JPG, PNG, PDF supported.</p>
+        </div>
+        <input type="file" id="hidden-file" style="display:none" accept="image/*, application/pdf" onchange="document.getElementById('upload-label').innerText = 'File Queued.'">
+        <button class="btn btn-cyan" onclick="closeModal('mod-identity'); dispatchToast('Documents securely transmitted.')">Submit KYC</button>
+    </div>
+</div>
+
+<div class="modal-layer" id="mod-ad">
+    <div class="modal-box" style="text-align:center; padding-top:64px">
+        <div class="close-btn" onclick="closeModal('mod-ad')"><i class="fa-solid fa-xmark"></i></div>
+        <h2 style="margin-bottom:16px;">Sponsor Ad Playing</h2>
+        <p style="margin-bottom:40px;">Wait for the bar to finish to earn +15 Coins.</p>
+        <div style="width:100%; height:12px; background:rgba(255,255,255,0.1); border-radius:6px; overflow:hidden; margin-bottom:40px"><div style="width:0%; height:100%; background:var(--coin-gold); animation: fadeUp 5s linear forwards"></div></div>
+        <button class="btn btn-gold" onclick="closeModal('mod-ad'); coins+=15; syncUI(); dispatchToast('+15 Coins Added!')">Claim Reward</button>
+    </div>
+</div>
+
+<div class="modal-layer" id="mod-doubts">
+    <div class="modal-box">
+        <div class="close-btn" onclick="closeModal('mod-doubts')"><i class="fa-solid fa-xmark"></i></div>
+        <h2 style="margin-bottom:16px;">Global Doubts</h2>
+        <p style="margin-bottom:24px;">Select a doubt to solve.</p>
+        <div class="bento-card interactive" style="border-color: rgba(239, 68, 68, 0.3); padding:20px" onclick="closeModal('mod-doubts'); dispatchToast('Routing to chat room...')">
+            <div class="flex-row" style="margin-bottom:12px"><div class="pill pill-red">URGENT</div> <span style="font-weight:900; color:var(--brand-copper)">+50 Coins</span></div>
+            <h3 style="font-size:16px; margin-bottom:4px">NumPy Logic Error</h3><p>Python • Asked 2m ago</p>
+        </div>
+    </div>
+</div>
+
+<div class="modal-layer call-layer" id="call-screen">
+    <div style="text-align:center; padding-top:24px">
+        <div class="pill pill-cyan" style="color:#fff; border-color:rgba(255,255,255,0.2); background:rgba(255,255,255,0.05); padding:8px 16px;"><i class="fa-solid fa-lock" style="color:var(--status-green); margin-right:6px"></i> E2E Encrypted WebRTC</div>
+    </div>
+    <div class="call-ring"><i class="fa-solid fa-user" style="color:rgba(255,255,255,0.2); font-size:64px"></i></div>
+    <div style="text-align:center; margin-bottom:auto">
+        <h2 style="font-size:32px; margin-bottom:8px" id="call-title">Aarav Garg</h2>
+        <p style="color:var(--brand-cyan); font-weight:800; text-transform:uppercase; letter-spacing:1px">Connecting Protocol...</p>
+    </div>
+    <div class="action-dock">
+        <button class="fab" onclick="dispatchToast('Mic Muted')"><i class="fa-solid fa-microphone-slash"></i></button>
+        <button class="fab fab-danger" onclick="endCall()"><i class="fa-solid fa-phone-flip"></i></button>
+        <button class="fab" onclick="dispatchToast('Camera Disabled')"><i class="fa-solid fa-video"></i></button>
+    </div>
+</div>
+
+<div class="modal-layer process-layer" id="global-overlay">
+    <div class="loader-ring" id="spinner"></div>
+    <i class="fa-solid fa-circle-check check-mark" id="success-icon"></i>
+    <h2 id="overlay-text" style="text-align:center; margin-bottom:12px">Processing...</h2>
+    <p id="overlay-sub" style="display:none; text-align:center; max-width:80%; margin:auto"></p>
+</div>
+<script>
+// 1. STATE & PERSISTENCE
+let coins = 450; let gems = 2; let xp = 450; let isPro = false;
+let questCompleted = false; let pendingFeature = ''; let uIdx = 0;
+
+const users = [
+    {name: "Rishit Jain", fname: "Rishit", match: "Aarav Garg", chat: "I'll trade Math prep for RTX specs!"},
+    {name: "Aarav Garg", fname: "Aarav", match: "Rishit Jain", chat: "Here are the RX 9060 benchmarks."},
+    {name: "Rishabh Jain", fname: "Rishabh", match: "Riyansh Garg", chat: "Can we swap JJK Lore for vouchers?"},
+    {name: "Riyansh Garg", fname: "Riyansh", match: "Rishabh Jain", chat: "Sending the Kochar voucher now."},
+    {name: "Gavya Jain", fname: "Gavya", match: "Rishit Jain", chat: "Can you review the backend PR?"}
+];
+
+function initApp() {
+    let saved = localStorage.getItem('ss_bento_v34');
+    if(saved) { let d = JSON.parse(saved); coins=d.coins; gems=d.gems; xp=d.xp; isPro=d.isPro; questCompleted=d.questCompleted; }
+    syncUI();
+}
+
+function storeData() { localStorage.setItem('ss_bento_v34', JSON.stringify({coins, gems, xp, isPro, questCompleted})); syncUI(); }
+function hardReset() { localStorage.removeItem('ss_bento_v34'); coins=450; gems=2; xp=450; isPro=false; questCompleted=false; storeData(); dispatchToast("Cache purged. Logged out."); }
+
+function syncUI() {
+    document.getElementById('coin-disp').innerText = coins.toLocaleString();
+    document.getElementById('gem-disp').innerText = gems.toLocaleString();
+    
+    let p = (xp / 1000) * 100; if(p > 100) p = 100;
+    document.getElementById('xp-bar').style.width = p + "%"; document.getElementById('xp-txt').innerText = `${xp} / 1000 XP`;
+    document.getElementById('lvl-txt').innerText = `Level ${Math.floor(xp / 100) + 1}`;
+
+    document.getElementById('pro-badge').style.display = isPro ? 'inline-flex' : 'none';
+
+    if(questCompleted) {
+        let qTag = document.getElementById('quest-prog'); qTag.innerText = "1/1";
+        document.getElementById('quest-bar').style.width = "100%";
+    }
+}
+
+// 2. ROUTING & BUG FIXES
+function switchView(tabId, element) {
+    document.querySelectorAll('.view-layer').forEach(v => v.classList.remove('active'));
+    document.querySelectorAll('.dock-item, .nav-link').forEach(n => n.classList.remove('active'));
+    document.getElementById(tabId).classList.add('active');
+    if(element) element.classList.add('active');
+}
+
+function triggerModal(id) { document.getElementById(id).classList.add('active'); document.body.classList.add('modal-open'); }
+function closeModal(id) { document.getElementById(id).classList.remove('active'); document.body.classList.remove('modal-open'); }
+
+// THE CALL BUG FIX
+function triggerCall() { document.getElementById('call-screen').classList.add('active'); document.body.classList.add('modal-open'); }
+function endCall() { 
+    document.getElementById('call-screen').classList.remove('active'); 
+    document.body.classList.remove('modal-open'); 
+    dispatchToast('P2P Connection Terminated.'); 
+}
+
+// 3. TOAST ENGINE
+let tQueue = []; let isToasting = false;
+function dispatchToast(msg) { tQueue.push(msg); if(!isToasting) runToast(); }
+function runToast() {
+    if(tQueue.length === 0) { isToasting = false; return; }
+    isToasting = true; let t = document.getElementById('system-toast');
+    document.getElementById('toast-msg').innerText = tQueue.shift(); t.classList.add('show');
+    setTimeout(() => { t.classList.remove('show'); setTimeout(runToast, 300); }, 2500);
+}
+
+// 4. LEDGER ENGINE
+function processLedger(msg, isFinancial, cChange = 0, gChange = 0) {
+    const ol = document.getElementById('global-overlay'); const sp = document.getElementById('spinner'); const sc = document.getElementById('success-icon'); const tx = document.getElementById('overlay-text'); const sb = document.getElementById('overlay-sub');
+    tx.innerText = msg; sb.style.display = 'none'; sp.style.display = 'block'; sc.style.display = 'none';
+    ol.classList.add('active'); document.body.classList.add('modal-open');
+
+    setTimeout(() => {
+        sp.style.display = 'none';
+        if (isFinancial) {
+            if ((cChange < 0 && coins < Math.abs(cChange)) || (gChange < 0 && gems < Math.abs(gChange))) {
+                sc.className = "fa-solid fa-circle-xmark check-mark"; sc.style.color = "var(--status-red)"; tx.innerText = "Failed"; sb.innerText = "Insufficient Liquidity."; sb.style.display = 'block';
+            } else {
+                sc.className = "fa-solid fa-circle-check check-mark"; sc.style.color = "var(--status-green)"; tx.innerText = "Authorized";
+                coins += cChange; gems += gChange; storeData();
+            }
+        } else { sc.className = "fa-solid fa-circle-check check-mark"; sc.style.color = "var(--brand-cyan)"; tx.innerText = "Executed"; }
+        sc.style.display = 'block'; setTimeout(() => { ol.classList.remove('active'); document.body.classList.remove('modal-open'); }, 1500);
+    }, 1800);
+}
+
+// 5. GATED LOGIC
+function gateCheck(feature) { if(isPro) { runFeature(feature); } else { pendingFeature = feature; triggerModal('paywall-modal'); } }
+function closePaywall() { closeModal('paywall-modal'); pendingFeature = ''; }
+function useSachet() { if(gems >= 1) { gems -= 1; storeData(); closePaywall(); processLedger('Authorizing Sachet...', false); setTimeout(() => { dispatchToast("Sachet Consumed."); runFeature(pendingFeature); }, 2000); } else { dispatchToast("Error: 0 Diamonds Available."); } }
+function purchasePro() { closePaywall(); processLedger('Validating Mandate...', false); setTimeout(() => { isPro = true; storeData(); dispatchToast("Pro Plus Unlocked."); runFeature(pendingFeature); }, 2000); }
+
+function runFeature(feat) {
+    if(feat === 'ai-tutor') { processLedger('Booting AI Models...', false); }
+    else if(feat === 'ai-proxy') {
+        let tk = document.getElementById('tg-proxy'); let kb = document.getElementById('kn-proxy');
+        let st = (window.px = !window.px);
+        if(st) { tk.style.background = 'var(--brand-cyan)'; kb.style.left = '24px'; kb.style.background = '#000'; dispatchToast("Proxy Active."); } 
+        else { tk.style.background = 'rgba(255,255,255,0.1)'; kb.style.left = '4px'; kb.style.background = '#fff'; dispatchToast("Proxy Disabled."); }
+    }
+}
+
+// 6. REGEX VALIDATION
+function executeScan(vip) {
+    let t = document.getElementById('in-teach').value.trim(); let l = document.getElementById('in-learn').value.trim();
+    const badRegex = /(fuck|shit|bitch|ass|sex|porn|crap|whore|slut|dick|pussy|cunt|nigger|faggot|chutiya|madarchod|bhenchod|randi|gandu|bhosdike|lawda|harami)/i;
+    const vSkills = ['java', 'python', 'c++', 'math', 'physics', 'guitar', 'pc', 'hardware', 'builds', 'coding', 'seo', 'design', 'anime', 'art', 'english', 'science', 'react', 'html', 'ai', 'ml', 'data', 'cloud'];
+    
+    if(!t || !l) { dispatchToast("System Halt: Missing parameters."); return; }
+    if(badRegex.test(t.replace(/[^\w\s]/g,'')) || badRegex.test(l.replace(/[^\w\s]/g,''))) { dispatchToast("⚠️ SECURITY ALERT: Terms of Service Violation Blocked."); return; }
+    
+    let tv = vSkills.some(v => t.toLowerCase().includes(v)); let lv = vSkills.some(v => l.toLowerCase().includes(v));
+    if(!tv && !lv) { dispatchToast("Validation Error: Unrecognized skill."); return; }
+    if(vip) { gateCheck('vip-scan'); } else { processLedger('Querying P2P Nodes...', false); setTimeout(() => { dispatchToast("Match Located."); }, 2000); }
+}
+
+document.getElementById('in-teach').addEventListener('keypress', function(e) { if(e.key === 'Enter') executeScan(false); });
+document.getElementById('in-learn').addEventListener('keypress', function(e) { if(e.key === 'Enter') executeScan(false); });
+
+function claimQuest() { if(questCompleted){ dispatchToast("Quest already logged."); return; } processLedger('Verifying Node Interactions...', false); setTimeout(() => { questCompleted=true; coins+=100; xp+=100; storeData(); dispatchToast("Quest Verified! +100 Coins, +100 XP."); }, 2000); }
+
+function rotateProfile() {
+    processLedger('Syncing Profiles...', false);
+    setTimeout(() => {
+        uIdx = (uIdx + 1) % users.length; const u = users[uIdx];
+        document.getElementById('ui-fname').innerText = u.fname; document.getElementById('prof-name').innerText = u.name; document.getElementById('prof-av').innerText = u.name.charAt(0);
+        document.getElementById('chat-name').innerText = u.match; document.getElementById('chat-msg').innerText = u.chat; document.getElementById('match-name').innerText = u.match; document.getElementById('call-title').innerText = u.match;
+        dispatchToast(`Profile Switched to ${u.fname}`);
+    }, 2000);
+}
+
+function updateThemeUI() {
+    let tk = document.getElementById('tg-theme'); let kb = document.getElementById('kn-theme');
+    if(document.body.classList.contains('light-mode')) { tk.style.background = 'var(--brand-cyan)'; kb.style.left = '24px'; kb.style.background = '#000'; } 
+    else { tk.style.background = 'rgba(255,255,255,0.1)'; kb.style.left = '4px'; kb.style.background = '#fff'; }
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    initApp();
+    if (window.Android && window.Android.hideSplashScreen) window.Android.hideSplashScreen(); else if (navigator.splashscreen) navigator.splashscreen.hide();
+});
+</script>
+</body>
+</html>
