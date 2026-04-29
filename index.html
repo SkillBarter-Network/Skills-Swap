@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Skill Swap - Master God Build V37</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="cinematic-bg"><div class="grid-lines"></div></div>
+<div class="ambient-bg"><div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div></div>
+
+<div id="toast-container"></div>
+
+<div class="terminal-overlay" id="sys-terminal">
+    <div class="terminal-window">
+        <div class="term-header">
+            <div class="term-dot" style="background:#FF5F56"></div><div class="term-dot" style="background:#FFBD2E"></div><div class="term-dot" style="background:#27C93F"></div>
+        </div>
+        <div id="term-output"></div>
+        <div class="term-success" id="term-done"><i class="fa-solid fa-check"></i> EXECUTION COMPLETE</div>
+    </div>
+</div>
+
+<div class="app-layout">
+    
+    <nav class="floating-nav">
+        <div class="brand-lockup" style="display:none; width:100%; margin-bottom:56px;" id="desk-brand">
+            <img src="image_8.png" alt="Logo" class="logo-img" style="width:64px; height:64px">
+            <div>
+                <h1 style="font-size:26px; margin:0">SKILLSWAP</h1>
+                <div class="tag tag-pro" id="pro-badge-desk" style="display:none; margin-top:8px; font-size:10px"><i class="fa-solid fa-crown"></i> ENTERPRISE</div>
+            </div>
+        </div>
+
+        <div class="nav-btn active" id="nav-home" onclick="navTo('v-home', this)"><i class="fa-solid fa-layer-group"></i><span>Home</span></div>
+        <div class="nav-btn" id="nav-inbox" onclick="navTo('v-inbox', this)"><i class="fa-solid fa-message"></i><span>Inbox</span></div>
+        <div class="nav-btn" id="nav-radar" onclick="navTo('v-radar', this)"><i class="fa-solid fa-satellite-dish"></i><span>Radar</span></div>
+        <div class="nav-btn" id="nav-store-mob" onclick="navTo('v-store', this)"><i class="fa-solid fa-store"></i><span>Store</span></div>
+        <div class="nav-btn" id="nav-settings" onclick="navTo('v-settings', this)"><i class="fa-solid fa-sliders"></i><span>Config</span></div>
+
+        <div class="wallet-hud" style="display:none; margin-top:auto; width:100%; justify-content:center; padding:16px" id="desk-wallet" onclick="navTo('v-store', document.getElementById('nav-store-mob'))">
+            <i class="fa-solid fa-coins" style="color:var(--coin-gold); font-size:20px"></i> <span id="coin-desk" style="font-size:18px">450</span>
+            <i class="fa-solid fa-gem" style="color:var(--brand-cyan); margin-left:24px; font-size:20px"></i> <span id="gem-desk" style="font-size:18px">2</span>
+        </div>
+    </nav>
+
+    <div style="flex:1; display:flex; flex-direction:column; overflow:hidden">
+        <header class="top-header">
+            <div class="brand-lockup" onclick="sysToast('Skill Swap God Engine V37 Active')">
+                <img src="image_8.png" alt="Logo" class="logo-img">
+                <div>
+                    <h1 style="font-size:18px; margin:0">SKILLSWAP</h1>
+                    <div class="tag tag-pro" id="pro-badge-mob" style="font-size:9px; padding:2px 8px; display:none"><i class="fa-solid fa-crown"></i> PRO</div>
+                </div>
+            </div>
+            <div class="wallet-hud" onclick="navTo('v-store', document.getElementById('nav-store-mob'))">
+                <i class="fa-solid fa-coins" style="color:var(--coin-gold)"></i> <span id="coin-mob">450</span>
+                <span style="color:var(--glass-border); margin:0 4px">|</span>
+                <i class="fa-solid fa-gem" style="color:var(--brand-cyan)"></i> <span id="gem-mob">2</span>
+            </div>
+        </header>
+
+        <main class="main-canvas">
+            <section id="v-home" class="view-layer active">
+                <div style="margin-bottom:40px;">
+                    <div class="tag tag-cyan" style="margin-bottom:16px"><i class="fa-solid fa-globe"></i> Global Network Live</div>
+                    <h2>Welcome, <span id="ui-fname" style="color:var(--brand-cyan)">Rishit</span></h2>
+                    <p style="font-size:16px">The student economy is primed. <span style="color:var(--status-green); font-weight:800">42 Nodes Online</span></p>
+                </div>
+
+                <div class="bento-container">
+                    <div class="glass-panel col-span-2 interactive" style="background:linear-gradient(135deg, rgba(168,85,247,0.15), var(--bg-surface)); border-color:rgba(168,85,247,0.3)" onclick="gateAction('ai-tutor')">
+                        <div class="flex-row" style="margin-bottom:24px">
+                            <div class="avatar" style="background:rgba(168,85,247,0.2); color:var(--accent-purple); font-size:24px; width:64px; height:64px"><i class="fa-solid fa-brain"></i></div>
+                            <div class="tag tag-pro"><i class="fa-solid fa-crown"></i> PREMIUM</div>
+                        </div>
+                        <h3 style="font-size:24px">AI Copilot Tutor</h3>
+                        <p style="margin-bottom:32px; flex:1">Resolve complex academic queries instantly using our trained LLM. Save your network liquidity for human peers.</p>
+                        <button class="btn btn-ai"><i class="fa-solid fa-terminal"></i> Initialize Model</button>
+                    </div>
+
+                    <div class="glass-panel interactive" style="border-color:rgba(245,158,11,0.2)" onclick="executeQuest()">
+                        <div class="avatar" style="background:rgba(245,158,11,0.1); color:var(--coin-gold); margin-bottom:20px; font-size:24px; width:56px; height:56px"><i class="fa-solid fa-bolt"></i></div>
+                        <h3 style="font-size:18px">Daily Objective</h3>
+                        <div class="flex-row" style="margin-bottom:12px; margin-top:auto"><p style="font-size:13px">Radar Scan</p><p style="color:var(--coin-gold); font-weight:900; font-size:14px" id="qst-txt">0/1</p></div>
+                        <div style="width:100%; height:8px; background:rgba(0,0,0,0.5); border-radius:10px; overflow:hidden">
+                            <div id="qst-bar" style="width:0%; height:100%; background:var(--coin-gold); transition:1s"></div>
+                        </div>
+                        <p style="font-size:12px; margin-top:12px; color:var(--coin-gold)">+100 Coins / +100 XP</p>
+                    </div>
+
+                    <div class="glass-panel interactive" onclick="openModal('mod-leaderboard')">
+                        <div class="avatar" style="background:rgba(0,229,255,0.1); color:var(--brand-cyan); margin-bottom:20px; font-size:24px; width:56px; height:56px"><i class="fa-solid fa-trophy"></i></div>
+                        <h3 style="font-size:18px; margin-top:auto">Guru Board</h3>
+                        <p style="font-size:13px; margin-bottom:16px">View global rankings.</p>
+                        <div class="tag tag-cyan">View Top 3</div>
+                    </div>
+                </div>
+
+                <div class="flex-row" style="margin-bottom:20px">
+                    <h3 style="font-size:22px">Network Doubts Pipeline</h3>
+                    <span class="tag tag-cyan" style="cursor:pointer" onclick="openModal('mod-doubts')">VIEW ALL</span>
+                </div>
+                <div class="horizontal-scroll">
+                    <div class="scroll-item glass-panel interactive" style="width:320px; padding:24px" onclick="openModal('mod-doubts')">
+                        <div class="tag tag-red" style="margin-bottom:20px">URGENT</div>
+                        <h4 style="font-size:18px; margin-bottom:10px">NumPy Arrays Logic</h4>
+                        <p style="font-size:13px">Python • <span style="color:var(--coin-gold); font-weight:900">+50 Coins</span></p>
+                    </div>
+                    <div class="scroll-item glass-panel interactive" style="width:320px; padding:24px" onclick="openModal('mod-doubts')">
+                        <div class="tag tag-cyan" style="margin-bottom:20px">ANIME</div>
+                        <h4 style="font-size:18px; margin-bottom:10px">JJK Domain Expansion</h4>
+                        <p style="font-size:13px">Theories • <span style="color:var(--coin-gold); font-weight:900">+20 Coins</span></p>
+                    </div>
+                    <div class="scroll-item glass-panel interactive" style="width:320px; padding:24px" onclick="openModal('mod-doubts')">
+                        <div class="tag tag-gold" style="margin-bottom:20px">HARDWARE</div>
+                        <h4 style="font-size:18px; margin-bottom:10px">RTX 5090 Bottleneck?</h4>
+                        <p style="font-size:13px">PC Builds • <span style="color:var(--coin-gold); font-weight:900">+40 Coins</span></p>
+                    </div>
+                </div>
+                
+                <h3 style="margin: 40px 0 20px; font-size:22px">Live Network Activity</h3>
+                <div class="glass-panel" style="padding:20px; border-left: 4px solid var(--status-green)">
+                    <p style="color:var(--text-main); font-size:15px"><strong>Gavya Jain</strong> just earned 50 Coins for solving a Physics doubt.</p>
+                    <p style="font-size:12px; margin-top:8px">Just now</p>
+                </div>
+            </section>
+            <section id="v-inbox" class="view-layer">
+                <h2 style="margin-bottom:32px;">Encrypted Inbox</h2>
+                
+                <h4 style="margin-bottom:16px; color:var(--text-muted); text-transform:uppercase; letter-spacing:1px">Active Nodes</h4>
+                <div class="horizontal-scroll" style="margin-bottom:16px">
+                    <div class="scroll-item" style="display:flex; flex-direction:column; align-items:center; gap:10px; cursor:pointer" onclick="startCall()">
+                        <div class="avatar" style="background:var(--brand-cyan); width:72px; height:72px; font-size:28px">A<div class="status-pip" style="width:18px; height:18px"></div></div>
+                        <p style="font-size:13px; color:var(--text-main); font-weight:800">Aarav Garg</p>
+                    </div>
+                </div>
+
+                <div class="cmd-input"><i class="fa-solid fa-search"></i><input type="text" placeholder="Search peers via cryptography..."></div>
+                
+                <div class="glass-panel" style="padding:16px 24px">
+                    <div class="list-tile" onclick="startCall()">
+                        <div class="avatar grad" style="width:64px; height:64px; font-size:24px">A<div class="status-pip"></div></div>
+                        <div style="flex:1"><div class="flex-row"><h4 id="chat-name" style="font-size:18px">Aarav Garg</h4><span style="font-size:12px; color:var(--text-secondary)">12:42 PM</span></div><p id="chat-msg" style="color:var(--brand-cyan); font-weight:800; font-size:14px"><i class="fa-solid fa-terminal" style="font-size:11px"></i> Typing...</p></div>
+                    </div>
+                    <div class="list-tile" onclick="sysToast('Rishabh is currently offline.')">
+                        <div class="avatar" style="width:64px; height:64px; font-size:24px">R</div>
+                        <div style="flex:1"><div class="flex-row"><h4 style="font-size:18px">Rishabh Jain</h4><span style="font-size:12px; color:var(--text-secondary)">1d</span></div><p style="font-size:14px">Did you see the JJK scaling?</p></div>
+                    </div>
+                    <div class="list-tile" onclick="sysToast('Gavya is currently offline.')">
+                        <div class="avatar" style="background:#9F1239; width:64px; height:64px; font-size:24px">G</div>
+                        <div style="flex:1"><div class="flex-row"><h4 style="font-size:18px">Gavya Jain</h4><span style="font-size:12px; color:var(--text-secondary)">2d</span></div><p style="font-size:14px"><i class="fa-solid fa-code"></i> Pushed commit to main</p></div>
+                    </div>
+                    <div class="list-tile" onclick="sysToast('Riyansh is currently offline.')" style="border:none">
+                        <div class="avatar" style="width:64px; height:64px; font-size:24px">R</div>
+                        <div style="flex:1"><div class="flex-row"><h4 style="font-size:18px">Riyansh Garg</h4><span style="font-size:12px; color:var(--text-secondary)">4d</span></div><p style="font-size:14px">Sending the Kochar voucher now.</p></div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="v-radar" class="view-layer">
+                <h2 style="margin-bottom:8px;">Match Radar</h2>
+                <p style="margin-bottom:40px; font-size:16px">P2P Encrypted Skill Matching Algorithm.</p>
+                
+                <div class="bento-container">
+                    <div class="glass-panel col-span-2 premium-border" style="border-color:rgba(0,229,255,0.2)">
+                        <h3 style="margin-bottom:24px">Set Parameters</h3>
+                        <div class="cmd-input"><i class="fa-solid fa-graduation-cap"></i><input type="text" id="in-teach" placeholder="I can teach (e.g. Java)"></div>
+                        <div class="cmd-input"><i class="fa-solid fa-book-open"></i><input type="text" id="in-learn" placeholder="I want to learn (e.g. Math)"></div>
+                        
+                        <div style="display:flex; gap:12px; margin-bottom:24px; flex-wrap:wrap">
+                            <span class="tag tag-cyan">Voice/Video</span>
+                            <span class="tag tag-pro"><i class="fa-solid fa-crown"></i> AI Verified</span>
+                        </div>
+
+                        <div style="display:flex; gap:16px; margin-top:32px">
+                            <button class="btn btn-glass" style="flex:1" onclick="executeScan(false)"><i class="fa-solid fa-radar"></i> Scan Grid</button>
+                            <button class="btn btn-copper" style="flex:1" onclick="executeScan(true)"><i class="fa-solid fa-crown"></i> VIP Override</button>
+                        </div>
+                    </div>
+
+                    <div class="glass-panel col-span-2" style="display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:48px 24px" id="match-card">
+                        <div class="avatar" style="width:100px; height:100px; font-size:40px; margin-bottom:24px; background:var(--brand-cyan); color:#000; animation: pulseGlow 2s infinite">!</div>
+                        <h4 id="match-name" style="font-size:28px; margin-bottom:12px">Aarav Garg</h4>
+                        <p style="color:var(--brand-cyan); font-weight:900; margin-bottom:40px; letter-spacing:1px; font-size:16px">MATCH CONFIDENCE: 98%</p>
+                        <button class="btn btn-cyan" style="max-width:320px" onclick="startCall()"><i class="fa-solid fa-video"></i> Accept WebRTC Bridge</button>
+                    </div>
+                </div>
+            </section>
+            <section id="v-store" class="view-layer">
+                <h2 style="margin-bottom:8px;">Protocol Store</h2>
+                <p style="margin-bottom:40px; font-size:16px">Manage liquidity, subscriptions, and arbitrage.</p>
+                
+                <div class="bento-container">
+                    <div>
+                        <h3 style="margin-bottom:20px; color:var(--brand-cyan)">1. Secure Liquidity</h3>
+                        <div class="glass-panel interactive" style="border-color:var(--brand-cyan)" onclick="runTerminal('init_fiat_gateway --type=UPI --asset=DIAMOND --qty=1', true, 0, 1)">
+                            <div class="flex-row" style="margin-bottom:12px"><h3 style="color:var(--brand-cyan); margin:0">+1 Diamond</h3><h3 style="margin:0; font-size:24px">₹25</h3></div>
+                            <p style="font-size:13px">Sachet Pass: Spend on VIP matches or save for physical gift cards.</p>
+                        </div>
+                        <div class="glass-panel interactive" style="border-color:var(--coin-gold)" onclick="runTerminal('init_fiat_gateway --type=UPI --asset=COIN --qty=1000', true, 1000, 0)">
+                            <div class="flex-row" style="margin-bottom:12px"><h3 style="color:var(--coin-gold); margin:0">+1,000 Coins</h3><h3 style="margin:0; font-size:24px">₹50</h3></div>
+                            <p style="font-size:13px">Inject balance to your wallet to hire peers instantly.</p>
+                        </div>
+
+                        <h3 style="margin:32px 0 20px; color:var(--status-red)">2. Earn & Drops</h3>
+                        <div class="glass-panel interactive" style="border-color:var(--brand-copper); background:linear-gradient(145deg, rgba(249,115,22,0.1), var(--bg-surface))" onclick="triggerModal('mod-ad')">
+                            <div class="flex-row" style="margin-bottom:12px"><h3 style="color:var(--text-main); margin:0">Watch Sponsor Ad</h3><i class="fa-solid fa-circle-play" style="font-size:32px; color:var(--brand-copper)"></i></div>
+                            <p style="font-size:13px">Support the network, earn +15 Coins instantly.</p>
+                        </div>
+                        <div class="glass-panel interactive" style="border-color:var(--accent-purple); background:linear-gradient(145deg, rgba(168,85,247,0.1), var(--bg-surface))" onclick="runTerminal('decrypt_loot_box --tier=RARE', true, -100, 0)">
+                            <div class="flex-row" style="margin-bottom:12px"><h3 style="color:var(--text-main); margin:0">Skill Drop Box</h3><i class="fa-solid fa-box-open" style="font-size:32px; color:var(--accent-purple)"></i></div>
+                            <p style="font-size:13px">Cost: 100 Coins. Contains random multipliers or badges.</p>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 style="margin-bottom:20px; color:var(--coin-gold)">3. Elite Plans</h3>
+                        <div class="glass-panel interactive premium-border" style="border-color:var(--coin-gold)" onclick="runTerminal('setup_recurring_mandate --plan=PRO_PLUS', false); setTimeout(()=>{isPro=true; saveData(); syncUI(); sysToast('Pro Plus Activated globally!');}, 3500);">
+                            <div class="flex-row" style="margin-bottom:16px"><h3 style="margin:0">Pro Plus Sub</h3><div class="tag tag-gold" style="border:none">₹499/mo</div></div>
+                            <p style="font-size:13px">Unlimited AI Tools, Proxy Stealth, AI Motion Tracing & Zero Ads.</p>
+                        </div>
+
+                        <h3 style="margin:32px 0 20px; color:var(--text-secondary)">4. Swaps & Arbitrage</h3>
+                        <div class="glass-panel interactive" onclick="runTerminal('execute_swap --pair=COIN/DIAMOND --amount=1050', true, -1050, 1)">
+                            <div class="flex-row" style="margin-bottom:16px"><h3 style="margin:0">Swap to Diamond</h3><i class="fa-solid fa-rotate" style="color:var(--brand-cyan); font-size:24px"></i></div>
+                            <p style="font-size:13px">Cost: 1,050 Coins (Includes 5% network sink fee).</p>
+                        </div>
+                        <div class="glass-panel interactive" style="border-color:var(--brand-copper)" onclick="runTerminal('burn_token --asset=DIAMOND --qty=25 --reward=AMZN', true, 0, -25)">
+                            <div class="flex-row" style="margin-bottom:16px"><h3 style="margin:0">Amazon / Kochar</h3><i class="fa-solid fa-microchip" style="color:var(--brand-copper); font-size:28px"></i></div>
+                            <p style="font-size:13px">Cost: 25 Diamonds. Value: ₹500 hardware/goods.</p>
+                        </div>
+                        <div class="glass-panel interactive" onclick="runTerminal('burn_token --asset=DIAMOND --qty=13 --reward=STEAM', true, 0, -13)">
+                            <div class="flex-row" style="margin-bottom:16px"><h3 style="margin:0">Steam (₹250)</h3><i class="fa-brands fa-steam" style="color:#fff; font-size:28px"></i></div>
+                            <p style="font-size:13px">Cost: 13 Diamonds.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 style="margin: 40px 0 24px; font-size:24px">Recent Ledger</h3>
+                <div class="glass-panel" style="padding:0">
+                    <div class="flex-row" style="padding:24px; border-bottom:1px solid var(--glass-border)"><p style="color:var(--text-main); font-weight:800; font-size:15px">Solved Python Doubt</p><span style="color:var(--status-green); font-weight:900; font-size:15px">+50 Coins</span></div>
+                    <div class="flex-row" style="padding:24px; border-bottom:1px solid var(--glass-border)"><p style="color:var(--text-main); font-weight:800; font-size:15px">Sponsor Ad Watched</p><span style="color:var(--status-green); font-weight:900; font-size:15px">+15 Coins</span></div>
+                    <div class="flex-row" style="padding:24px"><p style="color:var(--text-main); font-weight:800; font-size:15px">Account Initialization</p><span style="color:var(--status-green); font-weight:900; font-size:15px">+450 Coins</span></div>
+                </div>
+            </section>
+
+            <section id="v-settings" class="view-layer">
+                <h2 style="margin-bottom:32px;">Configuration</h2>
+
+                <div class="bento-container">
+                    <div class="glass-panel col-span-2" style="margin-bottom:0">
+                        <div style="display:flex; align-items:center; gap:24px; margin-bottom:32px">
+                            <div class="avatar" style="width:88px; height:88px; font-size:36px; border-radius:24px" id="prof-av">R</div>
+                            <div style="flex:1">
+                                <h3 id="prof-name" style="font-size:28px; margin-bottom:8px">Rishit Jain</h3>
+                                <div class="tag tag-cyan">KVM Verified</div>
+                            </div>
+                        </div>
+                        <div style="background:rgba(0,0,0,0.4); padding:20px; border-radius:20px; border:1px solid var(--glass-border)">
+                            <div class="flex-row" style="margin-bottom:16px; font-size:14px; font-weight:900"><span id="lvl-txt">Level 4 Scholar</span><span id="xp-txt" style="color:var(--brand-cyan)">450 / 1000 XP</span></div>
+                            <div class="progress-bg"><div class="progress-fill" id="xp-bar" style="width:45%; background:var(--brand-cyan)"></div></div>
+                        </div>
+                        <button class="btn btn-glass" style="margin-top:32px" onclick="shiftProfile()"><i class="fa-solid fa-user-astronaut"></i> Switch Test Identity</button>
+                    </div>
+
+                    <div class="glass-panel col-span-2" style="padding:16px 32px">
+                        <div class="list-tile" onclick="gateAction('ai-proxy')">
+                            <div style="flex:1"><h4 style="font-size:16px; margin-bottom:6px"><i class="fa-solid fa-crown" style="color:var(--coin-gold); margin-right:10px"></i> AI Proxy Stealth</h4><p>Mask identity on live calls.</p></div>
+                            <div style="width:60px; height:32px; background:rgba(255,255,255,0.1); border-radius:16px; position:relative; transition:0.3s" id="tg-px"><div style="position:absolute; width:24px; height:24px; background:#fff; border-radius:50%; top:4px; left:4px; transition:0.3s" id="kn-px"></div></div>
+                        </div>
+                        <div class="list-tile" onclick="gateAction('ai-motion')">
+                            <div style="flex:1"><h4 style="font-size:16px; margin-bottom:6px"><i class="fa-solid fa-crown" style="color:var(--coin-gold); margin-right:10px"></i> AI Motion Tracing</h4><p>Pose tracking for sports/dance.</p></div>
+                            <div style="width:60px; height:32px; background:rgba(255,255,255,0.1); border-radius:16px; position:relative; transition:0.3s" id="tg-mt"><div style="position:absolute; width:24px; height:24px; background:#fff; border-radius:50%; top:4px; left:4px; transition:0.3s" id="kn-mt"></div></div>
+                        </div>
+                        <div class="list-tile" onclick="document.body.classList.toggle('light-mode'); updateTheme();">
+                            <div style="flex:1"><h4 style="font-size:16px; margin-bottom:6px">Light Theme</h4><p>Adapt UI rendering.</p></div>
+                            <div style="width:60px; height:32px; background:rgba(255,255,255,0.1); border-radius:16px; position:relative; transition:0.3s" id="tg-tm"><div style="position:absolute; width:24px; height:24px; background:#fff; border-radius:50%; top:4px; left:4px; transition:0.3s" id="kn-tm"></div></div>
+                        </div>
+                        <div class="list-tile" onclick="triggerModal('mod-identity')">
+                            <div style="flex:1"><h4 style="font-size:16px; margin-bottom:6px">Identity Verification</h4><p>Upload Govt/School ID.</p></div>
+                            <div class="tag tag-red">Unverified</div>
+                        </div>
+                        <div class="list-tile" onclick="triggerModal('mod-founders')">
+                            <div style="flex:1"><h4 style="font-size:16px; margin-bottom:6px">Founders Hub</h4><p>Meet the executive team.</p></div>
+                            <i class="fa-solid fa-chevron-right" style="color:var(--text-secondary); font-size:20px"></i>
+                        </div>
+                        <div class="list-tile" onclick="sysToast('Data compilation initialized. A secure link will be emailed.')" style="border:none">
+                            <div style="flex:1"><h4 style="font-size:16px; margin-bottom:6px">Export Data</h4><p>Download chat cryptography logs.</p></div>
+                            <i class="fa-solid fa-download" style="color:var(--brand-cyan); font-size:20px"></i>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-ghost" style="color:var(--status-red); border-color:rgba(239,68,68,0.4); margin-top:24px" onclick="hardReset()">Purge Device Cache & Logout</button>
+            </section>
+        </main>
+    </div>
+</div>
+<div class="modal-backdrop" id="mod-leaderboard">
+    <div class="modal-surface">
+        <div class="modal-close-lg" onclick="closeModal('mod-leaderboard')"><i class="fa-solid fa-xmark"></i></div>
+        <h2 style="margin-bottom:40px;">Guru Board</h2>
+        <div class="glass-panel" style="display:flex; align-items:center; gap:24px; border-color:var(--coin-gold); background:rgba(251,191,36,0.15); margin-bottom:20px">
+            <h3 style="color:var(--coin-gold); margin:0; font-size:32px">1</h3><div class="avatar" style="background:var(--coin-gold); color:#000; width:72px; height:72px; font-size:32px">A</div><h4 style="flex:1; font-size:24px">Aarav Garg</h4><h4 style="color:var(--coin-gold); font-size:24px">15.2k</h4>
+        </div>
+        <div class="glass-panel" style="display:flex; align-items:center; gap:24px; margin-bottom:20px"><h3 style="color:var(--text-secondary); margin:0; font-size:24px">2</h3><div class="avatar" style="background:rgba(255,255,255,0.1); color:#fff; width:72px; height:72px; font-size:32px">R</div><h4 style="flex:1; font-size:20px">Rishit Jain</h4><h4 style="font-size:20px">12.4k</h4></div>
+        <div class="glass-panel" style="display:flex; align-items:center; gap:24px"><h3 style="color:var(--text-secondary); margin:0; font-size:24px">3</h3><div class="avatar" style="background:var(--status-red); color:#fff; width:72px; height:72px; font-size:32px">G</div><h4 style="flex:1; font-size:20px">Gavya Jain</h4><h4 style="font-size:20px">9.8k</h4></div>
+    </div>
+</div>
+
+<div class="modal-backdrop" id="mod-founders">
+    <div class="modal-surface">
+        <div class="modal-close-lg" onclick="closeModal('mod-founders')"><i class="fa-solid fa-xmark"></i></div>
+        <h2 style="margin-bottom:40px;">The Founders</h2>
+        <div class="glass-panel" style="text-align:center; border-color:var(--status-red); background:rgba(239,68,68,0.05); padding:40px; margin-bottom:24px">
+            <i class="fa-solid fa-location-dot" style="font-size:48px; color:var(--status-red); margin-bottom:20px"></i>
+            <h3>Ludhiana HQ</h3><p style="font-size:16px">Targeting Tier-2 educational corridors globally.</p>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
+            <div class="glass-panel" style="text-align:center; padding:24px; margin:0; flex: 1 1 calc(33% - 20px); min-width:110px;"><h4 style="font-size:16px; margin-bottom:8px">Rishit Jain</h4><p style="color:var(--brand-copper); font-size:12px; font-weight:800; letter-spacing:1px; text-transform:uppercase">Co-founder</p></div>
+            <div class="glass-panel" style="text-align:center; padding:24px; margin:0; flex: 1 1 calc(33% - 20px); min-width:110px;"><h4 style="font-size:16px; margin-bottom:8px">Aarav Garg</h4><p style="color:var(--brand-copper); font-size:12px; font-weight:800; letter-spacing:1px; text-transform:uppercase">Co-founder</p></div>
+            <div class="glass-panel" style="text-align:center; padding:24px; margin:0; flex: 1 1 calc(33% - 20px); min-width:110px;"><h4 style="font-size:16px; margin-bottom:8px">Rishabh Jain</h4><p style="color:var(--brand-copper); font-size:12px; font-weight:800; letter-spacing:1px; text-transform:uppercase">Co-founder</p></div>
+            <div class="glass-panel" style="text-align:center; padding:24px; margin:0; flex: 1 1 calc(50% - 20px); min-width:160px;"><h4 style="font-size:16px; margin-bottom:8px">Riyansh Garg</h4><p style="color:var(--brand-copper); font-size:12px; font-weight:800; letter-spacing:1px; text-transform:uppercase">Co-founder</p></div>
+            <div class="glass-panel" style="text-align:center; padding:24px; margin:0; flex: 1 1 calc(50% - 20px); min-width:160px;"><h4 style="font-size:16px; margin-bottom:8px">Gavya Jain</h4><p style="color:var(--brand-copper); font-size:12px; font-weight:800; letter-spacing:1px; text-transform:uppercase">Co-founder</p></div>
+        </div>
+    </div>
+</div>
+
+<div class="modal-backdrop premium-paywall" id="paywall-modal" style="justify-content:center; align-items:center; padding:24px;">
+    <div class="glass-panel premium-border" style="text-align:center; width:100%; max-width:480px; padding:56px 40px; margin:auto">
+        <i class="fa-solid fa-crown" style="font-size:80px; color:var(--coin-gold); margin-bottom:32px; animation: popIn 0.6s var(--ease-spring) forwards;"></i>
+        <h2 style="margin-bottom:20px;">Premium Authorization</h2>
+        <p style="margin-bottom:48px; font-size:16px">This is an advanced network feature. Unlock it securely using a Sachet Pass or subscribe to Pro Plus.</p>
+        
+        <button class="btn btn-copper" style="margin-bottom:20px; background:linear-gradient(135deg, var(--coin-gold), #F59E0B)" onclick="useSachet()"><i class="fa-solid fa-gem"></i> Use Sachet (-1 Diamond)</button>
+        <button class="btn btn-cyan" style="margin-bottom:32px" onclick="purchasePro()"><i class="fa-solid fa-bolt"></i> Get Pro Plus (₹499/mo)</button>
+        <p style="color:var(--text-secondary); cursor:pointer; font-weight:900; font-size:14px; text-transform:uppercase; letter-spacing:1.5px" onclick="closePaywall()">Abort Sequence</p>
+    </div>
+</div>
+
+<div class="modal-backdrop" id="mod-identity">
+    <div class="modal-surface">
+        <div class="modal-close-lg" onclick="closeModal('mod-identity')"><i class="fa-solid fa-xmark"></i></div>
+        <h2 style="margin-bottom:20px;">Identity Protocol</h2>
+        <p style="margin-bottom:40px; font-size:16px">Upload Adult/Gov ID or School ID to unlock network features securely.</p>
+        <div style="border:3px dashed var(--glass-border); border-radius:32px; padding:64px 24px; text-align:center; margin-bottom:40px; cursor:pointer; background:rgba(0,0,0,0.2)" onclick="document.getElementById('hidden-file').click()">
+            <i class="fa-solid fa-cloud-arrow-up" style="color:var(--brand-cyan); font-size:64px; margin-bottom:24px;"></i>
+            <h3 id="up-lbl" style="font-size:24px">Tap to Upload Document</h3><p>JPG, PNG, PDF supported.</p>
+        </div>
+        <input type="file" id="hidden-file" style="display:none" accept="image/*, application/pdf" onchange="document.getElementById('up-lbl').innerText = 'File Queued. Ready for hash.'">
+        <button class="btn btn-cyan" onclick="closeModal('mod-identity'); sysToast('Documents securely transmitted to backend.')">Submit Cryptographic KYC</button>
+    </div>
+</div>
+
+<div class="modal-backdrop" id="mod-ad">
+    <div class="modal-surface" style="text-align:center; padding-top:80px">
+        <div class="modal-close-lg" onclick="closeModal('mod-ad')"><i class="fa-solid fa-xmark"></i></div>
+        <h2 style="margin-bottom:24px;">Sponsor Ad Playing</h2>
+        <p style="margin-bottom:48px; font-size:18px">Do not close this window. Wait for the secure bar to finish to earn +15 Coins.</p>
+        <div class="progress-bg" style="height:16px; margin-bottom:56px"><div class="progress-fill" style="width:0%; background:var(--brand-copper); animation: slideUp 5s linear forwards; width:100%"></div></div>
+        <button class="btn btn-copper" onclick="closeModal('mod-ad'); coins+=15; syncUI(); sysToast('+15 Coins Mined!')">Claim Arbitrage Reward</button>
+    </div>
+</div>
+
+<div class="modal-backdrop" id="mod-doubts">
+    <div class="modal-surface">
+        <div class="modal-close-lg" onclick="closeModal('mod-doubts')"><i class="fa-solid fa-xmark"></i></div>
+        <h2 style="margin-bottom:24px;">Global Doubts Matrix</h2>
+        <p style="margin-bottom:40px; font-size:16px">Select a doubt to solve. Earn liquidity for the network.</p>
+        <div class="glass-panel interactive" style="border-color: rgba(239, 68, 68, 0.4); margin-bottom:20px" onclick="closeModal('mod-doubts'); sysToast('Routing to secure chat room...')">
+            <div class="flex-row" style="margin-bottom:20px"><div class="tag tag-red">URGENT</div> <span style="font-weight:900; color:var(--brand-copper); font-size:20px">+50 Coins</span></div>
+            <h3 style="font-size:24px; margin-bottom:8px">NumPy Logic Error</h3><p>Python • Asked 2m ago</p>
+        </div>
+        <div class="glass-panel interactive" onclick="closeModal('mod-doubts'); sysToast('Routing to secure chat room...')">
+            <div class="flex-row" style="margin-bottom:20px"><div class="tag tag-cyan">ANIME</div> <span style="font-weight:900; color:var(--brand-copper); font-size:20px">+20 Coins</span></div>
+            <h3 style="font-size:24px; margin-bottom:8px">JJK Adaptation Lore?</h3><p>Theories • Asked 15m ago</p>
+        </div>
+    </div>
+</div>
+
+<div class="modal-backdrop call-surface" id="call-screen">
+    <div style="text-align:center; padding-top:40px">
+        <div class="tag tag-cyan" style="color:#fff; border-color:rgba(255,255,255,0.2); background:rgba(255,255,255,0.05); padding:12px 24px; font-size:14px"><i class="fa-solid fa-lock" style="color:var(--status-green); margin-right:10px"></i> E2E Encrypted WebRTC</div>
+    </div>
+    
+    <div style="width:200px; height:200px; border-radius:50%; border:2px solid rgba(255,255,255,0.05); margin:auto; display:flex; justify-content:center; align-items:center; font-size:80px; background:rgba(255,255,255,0.02); animation: pulseGlow 2s infinite">
+        <i class="fa-solid fa-user" style="color:rgba(255,255,255,0.2)"></i>
+    </div>
+    
+    <div style="text-align:center; margin-bottom:auto">
+        <h2 style="font-size:42px; margin-bottom:16px" id="call-title">Aarav Garg</h2>
+        <p style="color:var(--brand-cyan); font-weight:800; font-size:18px; text-transform:uppercase; letter-spacing:3px">Connecting Protocol...</p>
+    </div>
+    
+    <div class="call-hub">
+        <button class="btn btn-glass" style="width:72px; height:72px; border-radius:50%; padding:0; border:none; font-size:28px" onclick="sysToast('Hardware Mic input suspended.')"><i class="fa-solid fa-microphone-slash"></i></button>
+        <button class="btn" style="width:72px; height:72px; border-radius:50%; padding:0; background:var(--status-red); color:#fff; box-shadow:0 0 40px rgba(239, 68, 68, 0.5); font-size:28px" onclick="endCall()"><i class="fa-solid fa-phone-flip"></i></button>
+        <button class="btn btn-glass" style="width:72px; height:72px; border-radius:50%; padding:0; border:none; font-size:28px" onclick="sysToast('Camera array feed suspended.')"><i class="fa-solid fa-video"></i></button>
+    </div>
+</div>
+<script>
+// 1. STATE & PERSISTENCE
+let coins = 450; let gems = 2; let xp = 450; let isPro = false;
+let questCompleted = false; let pendingFeature = ''; let uIdx = 0;
+
+const users = [
+    {name: "Rishit Jain", fname: "Rishit", match: "Aarav Garg", chat: "I'll trade Math prep for RTX specs!"},
+    {name: "Aarav Garg", fname: "Aarav", match: "Rishit Jain", chat: "Here are the RX 9060 benchmarks."},
+    {name: "Rishabh Jain", fname: "Rishabh", match: "Riyansh Garg", chat: "Can we swap JJK Lore for vouchers?"},
+    {name: "Riyansh Garg", fname: "Riyansh", match: "Rishabh Jain", chat: "Sending the Kochar voucher now."},
+    {name: "Gavya Jain", fname: "Gavya", match: "Rishit Jain", chat: "Can you review the backend PR?"}
+];
+
+function initApp() {
+    let saved = localStorage.getItem('ss_god_v37');
+    if(saved) { let d = JSON.parse(saved); coins=d.coins; gems=d.gems; xp=d.xp; isPro=d.isPro; questCompleted=d.questCompleted; }
+    syncUI();
+}
+
+function saveData() { localStorage.setItem('ss_god_v37', JSON.stringify({coins, gems, xp, isPro, questCompleted})); syncUI(); }
+function hardReset() { localStorage.removeItem('ss_god_v37'); coins=450; gems=2; xp=450; isPro=false; questCompleted=false; saveData(); sysToast("Cache purged. Logged out."); }
+
+function syncUI() {
+    document.getElementById('coin-mob').innerText = coins.toLocaleString(); document.getElementById('coin-desk').innerText = coins.toLocaleString();
+    document.getElementById('gem-mob').innerText = gems.toLocaleString(); document.getElementById('gem-desk').innerText = gems.toLocaleString();
+    
+    let p = (xp / 1000) * 100; if(p > 100) p = 100;
+    document.getElementById('xp-bar').style.width = p + "%"; document.getElementById('xp-txt').innerText = `${xp} / 1000 XP`;
+    document.getElementById('lvl-txt').innerText = `Level ${Math.floor(xp / 100) + 1} Scholar`;
+
+    let pDisp = isPro ? 'inline-flex' : 'none';
+    document.getElementById('pro-badge-mob').style.display = pDisp; document.getElementById('pro-badge-desk').style.display = pDisp;
+
+    if(questCompleted) {
+        document.getElementById('qst-txt').innerText = "1/1"; document.getElementById('qst-bar').style.width = "100%";
+    }
+}
+
+// 2. OMNI-ROUTING 
+function navTo(tabId, element) {
+    document.querySelectorAll('.nav-btn, .dock-btn').forEach(n => n.classList.remove('active'));
+    if(element) {
+        let nClass = element.id.replace('-mob', '');
+        document.querySelectorAll(`[id^='${nClass}']`).forEach(el => el.classList.add('active'));
+    }
+    document.querySelectorAll('.view-layer').forEach(v => v.classList.remove('active'));
+    
+    let target = document.getElementById(tabId);
+    target.classList.add('active');
+    
+    if(tabId === 'v-home' || tabId === 'v-inbox') {
+        let skel = document.getElementById(`skel-${tabId.split('-')[1]}`);
+        let cont = document.getElementById(`content-${tabId.split('-')[1]}`);
+        if(skel && cont) {
+            skel.style.display = 'block'; cont.style.display = 'none';
+            setTimeout(() => { skel.style.display = 'none'; cont.style.display = 'block'; }, 400);
+        }
+    }
+}
+
+function openModal(id) { document.getElementById(id).classList.add('active'); document.body.classList.add('modal-open'); }
+function closeModal(id) { document.getElementById(id).classList.remove('active'); document.body.classList.remove('modal-open'); }
+
+// 3. SECURE CALL ENGINE
+function startCall() { document.getElementById('call-screen').classList.add('active'); document.body.classList.add('modal-open'); }
+function endCall() { 
+    document.getElementById('call-screen').classList.remove('active'); 
+    document.body.classList.remove('modal-open'); 
+    sysToast('Secure P2P Connection Terminated.'); 
+}
+
+// 4. ARRAY QUEUE TOAST ENGINE
+let tQueue = []; let isToasting = false;
+function sysToast(msg) { tQueue.push(msg); if(!isToasting) runToast(); }
+function runToast() {
+    if(tQueue.length === 0) { isToasting = false; return; }
+    isToasting = true; let t = document.getElementById('sys-toast');
+    document.getElementById('toast-msg').innerText = tQueue.shift(); t.classList.add('show');
+    setTimeout(() => { t.classList.remove('show'); setTimeout(runToast, 300); }, 3000);
+}
+
+// 5. TERMINAL EXECUTION OVERLAY
+function runTerminal(cmd, isFinancial, cChange = 0, gChange = 0) {
+    const term = document.getElementById('sys-terminal'); const out = document.getElementById('term-output'); const done = document.getElementById('term-done');
+    term.classList.add('active'); document.body.classList.add('modal-open');
+    out.innerHTML = ''; done.style.display = 'none';
+    
+    let logs = [
+        `> User@SkillSwap ~ % ${cmd}`, `> Establishing secure connection to node... OK`, `> Verifying cryptographic signature... OK`, `> Parsing ledger variables: COIN=${cChange}, GEM=${gChange}`,
+    ];
+
+    if(isFinancial && ((cChange < 0 && coins < Math.abs(cChange)) || (gChange < 0 && gems < Math.abs(gChange)))) {
+        logs.push(`<span style="color:#FF5F56">> ERROR 402: INSUFFICIENT PROTOCOL LIQUIDITY.</span>`); logs.push(`> Terminating sequence.`);
+    } else {
+        logs.push(`> Mutating state...`); logs.push(`<span style="color:#00E5FF">> Block committed successfully.</span>`);
+    }
+
+    let i = 0;
+    function printLog() {
+        if(i < logs.length) {
+            out.innerHTML += `<div class="term-log">${logs[i]}</div>`; i++; setTimeout(printLog, 300);
+        } else {
+            setTimeout(() => {
+                if (!logs.includes(`> Terminating sequence.`)) { coins += cChange; gems += gChange; saveData(); }
+                done.style.display = 'block'; setTimeout(() => { term.classList.remove('active'); document.body.classList.remove('modal-open'); }, 1500);
+            }, 500);
+        }
+    }
+    printLog();
+}
+
+// 6. GATED LOGIC
+function gateAction(feature) { if(isPro) { runFeature(feature); } else { pendingFeature = feature; openModal('paywall-modal'); } }
+function closePaywall() { closeModal('paywall-modal'); pendingFeature = ''; }
+function useSachet() { if(gems >= 1) { gems -= 1; saveData(); closePaywall(); runTerminal('consume_sachet --asset=DIAMOND', false); setTimeout(() => { sysToast("Sachet Consumed. Access Granted."); runFeature(pendingFeature); }, 3500); } else { sysToast("Error: 0 Diamonds Available."); } }
+function purchasePro() { closePaywall(); runTerminal('verify_mandate --plan=PRO_PLUS', false); setTimeout(() => { isPro = true; saveData(); sysToast("Pro Plus Unlocked Globally."); runFeature(pendingFeature); }, 3500); }
+
+function runFeature(feat) {
+    if(feat === 'ai-tutor') { runTerminal('boot_model --type=LLM_TUTOR', false); }
+    else if(feat === 'ai-proxy' || feat === 'ai-motion') {
+        let isPx = feat === 'ai-proxy'; let tk = document.getElementById(isPx ? 'tg-px' : 'tg-mt'); let kb = document.getElementById(isPx ? 'kn-px' : 'kn-mt');
+        let st = isPx ? (window.px = !window.px) : (window.mt = !window.mt);
+        if(st) { tk.style.background = 'var(--brand-cyan)'; kb.style.left = '32px'; kb.style.background = '#000'; sysToast(isPx ? "Proxy Stealth Active." : "Motion Tracing Active."); } 
+        else { tk.style.background = 'rgba(255,255,255,0.1)'; kb.style.left = '4px'; kb.style.background = '#fff'; sysToast(isPx ? "Proxy Stealth Disabled." : "Motion Tracing Disabled."); }
+    } else if(feat === 'vip-scan') { runTerminal('bypass_queue --priority=MAX', false); setTimeout(() => { sysToast("VIP Priority Override Successful."); }, 3500); }
+}
+
+// 7. REGEX VALIDATION
+function executeScan(vip) {
+    let t = document.getElementById('in-teach').value.trim(); let l = document.getElementById('in-learn').value.trim();
+    const badRegex = /(fuck|shit|bitch|ass|sex|porn|crap|whore|slut|dick|pussy|cunt|nigger|faggot|chutiya|madarchod|bhenchod|randi|gandu|bhosdike|lawda|harami)/i;
+    const vSkills = ['java', 'python', 'c++', 'math', 'physics', 'guitar', 'pc', 'hardware', 'builds', 'coding', 'seo', 'design', 'anime', 'art', 'english', 'science', 'react', 'html', 'ai', 'ml', 'data', 'cloud'];
+    
+    if(!t || !l) { sysToast("System Halt: Missing parameters."); return; }
+    if(badRegex.test(t.replace(/[^\w\s]/g,'')) || badRegex.test(l.replace(/[^\w\s]/g,''))) { sysToast("⚠️ SECURITY ALERT: Terms of Service Violation Blocked."); return; }
+    
+    let tv = vSkills.some(v => t.toLowerCase().includes(v)); let lv = vSkills.some(v => l.toLowerCase().includes(v));
+    if(!tv && !lv) { sysToast("Validation Error: Unrecognized academic/technical skill."); return; }
+    if(vip) { gateAction('vip-scan'); } else { runTerminal(`query_nodes --teach=${t} --learn=${l}`, false); setTimeout(() => { sysToast("Standard Match Located in Matrix."); }, 3500); }
+}
+
+document.getElementById('in-teach').addEventListener('keypress', function(e) { if(e.key === 'Enter') executeScan(false); });
+document.getElementById('in-learn').addEventListener('keypress', function(e) { if(e.key === 'Enter') executeScan(false); });
+
+function executeQuest() { if(questCompleted){ sysToast("Quest already logged today."); return; } runTerminal('verify_interactions --type=DAILY', false); setTimeout(() => { questCompleted=true; coins+=100; xp+=100; saveData(); sysToast("Quest Verified! +100 Coins, +100 XP."); }, 3500); }
+
+function shiftProfile() {
+    runTerminal('sync_matrix_profiles', false);
+    setTimeout(() => {
+        uIdx = (uIdx + 1) % users.length; const u = users[uIdx];
+        document.getElementById('ui-fname').innerText = u.fname; document.getElementById('prof-name').innerText = u.name; document.getElementById('prof-av').innerText = u.name.charAt(0);
+        document.getElementById('chat-name').innerText = u.match; document.getElementById('chat-msg').innerText = u.chat; document.getElementById('match-name').innerText = u.match; document.getElementById('call-title').innerText = u.match;
+        sysToast(`Matrix Realigned to ${u.fname}`);
+    }, 3500);
+}
+
+function updateTheme() {
+    let tk = document.getElementById('tg-tm'); let kb = document.getElementById('kn-tm');
+    if(document.body.classList.contains('light-mode')) { tk.style.background = 'var(--brand-cyan)'; kb.style.left = '32px'; kb.style.background = '#000'; } 
+    else { tk.style.background = 'rgba(255,255,255,0.1)'; kb.style.left = '4px'; kb.style.background = '#fff'; }
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    initApp();
+    if(window.innerWidth >= 1024) { document.getElementById('desk-brand').style.display = 'flex'; document.getElementById('desk-wallet').style.display = 'flex'; }
+});
+window.addEventListener('resize', function() {
+    if(window.innerWidth >= 1024) { document.getElementById('desk-brand').style.display = 'flex'; document.getElementById('desk-wallet').style.display = 'flex'; } 
+    else { document.getElementById('desk-brand').style.display = 'none'; document.getElementById('desk-wallet').style.display = 'none'; }
+});
+</script>
+</body>
+</html>
